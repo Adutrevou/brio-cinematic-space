@@ -1,12 +1,25 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/brio/Navbar";
+import HeroSection from "@/components/brio/HeroSection";
+import AboutSection from "@/components/brio/AboutSection";
+import ServicesSection from "@/components/brio/ServicesSection";
+import ProcessSection from "@/components/brio/ProcessSection";
+import ProjectsSection from "@/components/brio/ProjectsSection";
+import SmartHomeSection from "@/components/brio/SmartHomeSection";
+import ContactSection from "@/components/brio/ContactSection";
+import Footer from "@/components/brio/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="grain-overlay">
+      <Navbar />
+      <HeroSection />
+      <ProjectsSection />
+      <AboutSection />
+      <ServicesSection />
+      <ProcessSection />
+      <SmartHomeSection />
+      <ContactSection />
+      <Footer />
     </div>
   );
 };
