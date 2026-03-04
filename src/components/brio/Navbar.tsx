@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import brioLogo from "@/assets/brio-logo.png";
 
 const navItems = ["Work", "Services", "Process", "About", "Contact"];
 
@@ -32,8 +31,8 @@ const Navbar = () => {
         }`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 h-20">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <img src={brioLogo} alt="Brio" className="h-12 w-auto" />
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="font-serif text-2xl font-light tracking-wider text-foreground">
+            BRIO
           </button>
 
           {/* Desktop nav */}
