@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import brioLogo from "@/assets/brio-logo-white.png";
 
 const Footer = () => (
   <footer className="px-6 md:px-12 lg:px-24 py-16 border-t border-border">
     <div className="brio-container">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div className="grid grid-cols-1 md:cols-4 gap-12 mb-12">
         <div>
-          <Link to="/" className="font-serif text-2xl font-light tracking-wider text-foreground">
-            BRIO
+          <Link to="/" className="inline-block">
+            <img src={brioLogo} alt="BRIO - Concepts & Design" className="h-10 w-auto invert" />
           </Link>
           <p className="font-sans text-sm text-muted-foreground mt-4 font-light">
             The Art of Living,<br />Beautifully Composed.

@@ -40,8 +40,14 @@ const Navbar = () => {
         }`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 h-20">
-          <Link to="/" className="font-serif text-2xl font-light tracking-wider text-foreground">
-            BRIO
+          <Link to="/" className="flex items-center">
+            <img
+              src={brioLogo}
+              alt="BRIO - Concepts & Design"
+              className={`h-10 w-auto transition-all duration-700 ${
+                scrolled ? "invert" : ""
+              }`}
+            />
           </Link>
 
           {/* Desktop nav */}
