@@ -74,9 +74,9 @@ const Navbar = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden flex flex-col gap-1.5"
           >
-            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }} className="block w-6 h-px bg-foreground" />
-            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className="block w-6 h-px bg-foreground" />
-            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }} className="block w-6 h-px bg-foreground" />
+            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }} className={`block w-6 h-px ${useLightText ? "bg-white" : "bg-foreground"}`} />
+            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className={`block w-6 h-px ${useLightText ? "bg-white" : "bg-foreground"}`} />
+            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }} className={`block w-6 h-px ${useLightText ? "bg-white" : "bg-foreground"}`} />
           </button>
         </div>
       </motion.nav>
