@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
-const navItems = ["Work", "Services", "Process", "About", "Contact"];
+const navItems = [
+  { label: "Projects", path: "/projects" },
+  { label: "Services", path: "/services" },
+  { label: "Process", path: "/process" },
+  { label: "About", path: "/about" },
+  { label: "Team", path: "/team" },
+  { label: "Contact", path: "/contact" },
+];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -13,10 +22,9 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
+  useEffect(() => {
     setMenuOpen(false);
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
-  };
+  }, [location.pathname]);
 
   return (
     <>
@@ -31,20 +39,24 @@ const Navbar = () => {
         }`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 h-20">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="font-serif text-2xl font-light tracking-wider text-foreground">
+          <Link to="/" className="font-serif text-2xl font-light tracking-wider text-foreground">
             BRIO
-          </button>
+          </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-12">
+          <div className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollTo(item)}
-                className="brio-caption text-muted-foreground hover:text-foreground transition-colors duration-500"
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`brio-caption transition-colors duration-500 ${
+                  location.pathname === item.path
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
-                {item}
-              </button>
+                {item.label}
+              </Link>
             ))}
           </div>
 
@@ -71,16 +83,19 @@ const Navbar = () => {
             className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-8"
           >
             {navItems.map((item, i) => (
-              <motion.button
-                key={item}
+              <motion.div
+                key={item.path}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                onClick={() => scrollTo(item)}
-                className="font-serif text-3xl font-light text-foreground"
               >
-                {item}
-              </motion.button>
+                <Link
+                  to={item.path}
+                  className="font-serif text-3xl font-light text-foreground"
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         )}
