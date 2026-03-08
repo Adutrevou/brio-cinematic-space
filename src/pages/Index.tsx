@@ -186,13 +186,13 @@ const FeaturedProjects = () => {
                 />
                 <motion.div
                   className="absolute inset-0 flex flex-col justify-end p-8"
-                  animate={hoveredIndex === i ? { backgroundColor: "hsla(220, 10%, 15%, 0.4)" } : { backgroundColor: "hsla(220, 10%, 15%, 0)" }}
+                  animate={hoveredIndex === i ? { backgroundColor: "rgba(0,0,0,0.5)" } : { backgroundColor: "rgba(0,0,0,0)" }}
                   transition={{ duration: 0.5 }}
                 >
                   <motion.span
                     animate={hoveredIndex === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ duration: 0.4 }}
-                    className="brio-caption text-primary-foreground/70 mb-2"
+                    className="brio-caption text-white/70 mb-2"
                   >
                     {project.category}
                   </motion.span>
