@@ -45,9 +45,6 @@ const About = () => {
 const StorySection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const imageRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: imageRef, offset: ["start end", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   const paragraphs = [
     "Brio started when two brothers combined their deep love for design with a simple belief: your home should tell your story.",
