@@ -61,37 +61,24 @@ const StorySection = () => {
 
   return (
     <section className="brio-section pt-0" ref={ref}>
-      <div className="brio-container grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
-        <div className="flex flex-col justify-center">
-          {paragraphs.map((line, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.9, delay: 0.15 + i * 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className={`brio-body text-muted-foreground ${i < paragraphs.length - 1 ? "mb-6" : ""} ${i === paragraphs.length - 1 ? "text-foreground font-normal" : ""}`}
-            >
-              {line}
-            </motion.p>
-          ))}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : {}}
-            transition={{ duration: 1.2, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="h-px bg-foreground/20 mt-10 origin-left"
-          />
-        </div>
-        <div ref={imageRef} className="aspect-[3/4] overflow-hidden relative">
-          <motion.img
-            src={aboutStudio}
-            alt="Brio design studio"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ y: imageY }}
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={inView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 1.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          />
-        </div>
+      <div className="brio-container max-w-3xl">
+        {paragraphs.map((line, i) => (
+          <motion.p
+            key={i}
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.15 + i * 0.18, ease: [0.22, 1, 0.36, 1] }}
+            className={`brio-body text-muted-foreground ${i < paragraphs.length - 1 ? "mb-6" : ""} ${i === paragraphs.length - 1 ? "text-foreground font-normal" : ""}`}
+          >
+            {line}
+          </motion.p>
+        ))}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={inView ? { scaleX: 1 } : {}}
+          transition={{ duration: 1.2, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="h-px bg-foreground/20 mt-10 origin-left"
+        />
       </div>
     </section>
   );
