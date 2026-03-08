@@ -128,58 +128,45 @@ const WhyUsSection = () => {
 
   return (
     <section className="brio-section" ref={ref}>
-      <div className="brio-container grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-        <div ref={imageRef} className="aspect-[4/3] overflow-hidden relative order-2 lg:order-1">
-          <motion.img
-            src={aboutMaterials}
-            alt="Brio material palette — stone, brass, timber, marble"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ scale: imageScale }}
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 1.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          />
-        </div>
-        <div className="order-1 lg:order-2">
-          <motion.p
-            initial={{ opacity: 0, x: -16 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="brio-caption text-muted-foreground mb-8"
-          >
-            Why Us
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="brio-heading-lg mb-6"
-          >
-            Curating Homes, Crafting Stories.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="brio-body text-muted-foreground mb-6"
-          >
-            We design for clients who prioritise substance over spectacle — those who recognise that true luxury comes not from extravagance, but from creating spaces with intention and thoughtfulness. We ground our work in craft, integrity, and deep respect for the context in which we build.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="brio-body text-muted-foreground"
-          >
-            We collaborate on each project, combining vision, expertise, and care. We consider every detail, select every material with purpose, and make every design decision deliberately.
-          </motion.p>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : {}}
-            transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="h-px bg-foreground/20 mt-10 origin-left"
-          />
-        </div>
+      <div className="brio-container max-w-3xl">
+        <motion.p
+          initial={{ opacity: 0, x: -16 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="brio-caption text-muted-foreground mb-8"
+        >
+          Why Us
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="brio-heading-lg mb-6"
+        >
+          Curating Homes, Crafting Stories.
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="brio-body text-muted-foreground mb-6"
+        >
+          We design for clients who prioritise substance over spectacle — those who recognise that true luxury comes not from extravagance, but from creating spaces with intention and thoughtfulness. We ground our work in craft, integrity, and deep respect for the context in which we build.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="brio-body text-muted-foreground"
+        >
+          We collaborate on each project, combining vision, expertise, and care. We consider every detail, select every material with purpose, and make every design decision deliberately.
+        </motion.p>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={inView ? { scaleX: 1 } : {}}
+          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="h-px bg-foreground/20 mt-10 origin-left"
+        />
       </div>
     </section>
   );
