@@ -16,10 +16,11 @@ const BlueprintAnimation = () => {
   // Glow behind the drawing
   const glowOpacity = useTransform(scrollYProgress, [0.30, 0.50, 0.62, 0.70], [0, 0.06, 0.06, 0]);
 
-  // PHASE 8: Photo reveal (0.62–0.75) — blueprint fades, photo fades in, then zoom
-  const blueprintOpacity = useTransform(scrollYProgress, [0.62, 0.72], [1, 0]);
-  const photoOpacity = useTransform(scrollYProgress, [0.64, 0.75], [0, 1]);
-  const photoScale = useTransform(scrollYProgress, [0.64, 0.90], [1, 1.45]);
+  // PHASE 8: Blueprint zooms in, then crossfades to photo
+  const blueprintScale = useTransform(scrollYProgress, [0.55, 0.70], [1, 1.35]);
+  const blueprintOpacity = useTransform(scrollYProgress, [0.66, 0.75], [1, 0]);
+  const photoOpacity = useTransform(scrollYProgress, [0.68, 0.78], [0, 1]);
+  const photoScale = useTransform(scrollYProgress, [0.68, 0.90], [1.35, 1.45]);
 
   const l = (s: number, e: number) => useTransform(scrollYProgress, [s, e], [0, 1]);
 
@@ -170,7 +171,7 @@ const BlueprintAnimation = () => {
           </motion.div>
 
           {/* Blueprint SVG layer */}
-          <motion.svg viewBox="0 0 1600 900" className="w-full h-full relative z-10" fill="none" style={{ opacity: blueprintOpacity }}>
+          <motion.svg viewBox="0 0 1600 900" className="w-full h-full relative z-10" fill="none" style={{ opacity: blueprintOpacity, scale: blueprintScale }}>
 
             {/* ── GROUND & FOUNDATION ── */}
             <motion.line x1="0" y1="640" x2="1600" y2="640" stroke={bright} strokeWidth="0.8" style={{ pathLength: groundMain }} />
