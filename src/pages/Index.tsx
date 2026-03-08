@@ -53,7 +53,7 @@ const HeroSection = () => (
       className="absolute inset-0"
     >
       <div className="absolute inset-0 bg-cover bg-center animate-slow-zoom" style={{ backgroundImage: `url(${heroImage})` }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/10 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background" />
     </motion.div>
 
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -77,10 +77,10 @@ const HeroSection = () => (
         Brio started when two brothers combined their deep love for design with a simple belief: your home should tell your story. We design architecture, interiors, and smart home systems to create spaces that go beyond beauty — they feel personal.
       </motion.p>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.2 }} className="mt-10 flex flex-col sm:flex-row gap-4">
-        <Link to="/projects" className="brio-caption text-foreground bg-white/90 backdrop-blur-sm px-8 py-3 hover:bg-white transition-all duration-500">
+        <Link to="/projects" className="brio-caption text-background bg-foreground px-8 py-3 hover:bg-foreground/80 transition-all duration-500">
           View Our Work
         </Link>
-        <Link to="/contact" className="brio-caption text-foreground bg-white/90 backdrop-blur-sm px-8 py-3 hover:bg-white transition-all duration-500">
+        <Link to="/contact" className="brio-caption text-white border border-white/50 px-8 py-3 backdrop-blur-sm hover:bg-white/10 transition-all duration-500">
           Start a Conversation
         </Link>
       </motion.div>
@@ -186,20 +186,20 @@ const FeaturedProjects = () => {
                 />
                 <motion.div
                   className="absolute inset-0 flex flex-col justify-end p-8"
-                  animate={hoveredIndex === i ? { backgroundColor: "hsla(220, 10%, 15%, 0.4)" } : { backgroundColor: "hsla(220, 10%, 15%, 0)" }}
+                  animate={hoveredIndex === i ? { backgroundColor: "rgba(0,0,0,0.5)" } : { backgroundColor: "rgba(0,0,0,0)" }}
                   transition={{ duration: 0.5 }}
                 >
                   <motion.span
                     animate={hoveredIndex === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ duration: 0.4 }}
-                    className="brio-caption text-primary-foreground/70 mb-2"
+                    className="brio-caption text-white/70 mb-2"
                   >
                     {project.category}
                   </motion.span>
                   <motion.h3
                     animate={hoveredIndex === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ duration: 0.4, delay: 0.05 }}
-                    className="font-serif text-2xl md:text-3xl font-light text-primary-foreground"
+                    className="font-serif text-2xl md:text-3xl font-light text-white"
                   >
                     {project.title}
                   </motion.h3>
@@ -208,7 +208,7 @@ const FeaturedProjects = () => {
                   <motion.rect
                     x="0" y="0" width="400" height="300"
                     stroke="currentColor" strokeWidth="0.5"
-                    className="text-primary-foreground/30"
+                    className="text-white/30"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={hoveredIndex === i ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
