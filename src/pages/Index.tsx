@@ -67,7 +67,7 @@ const HeroSection = () => (
 
     <div className="relative z-10 h-full flex flex-col items-center justify-end pb-24 md:pb-32 px-6 text-center">
       <motion.img src={brioLogo} alt="BRIO" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.6 }} className="w-48 md:w-64 mb-8" />
-      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }} className="brio-caption text-primary-foreground/70 mb-6">
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }} className="brio-caption text-white mb-6">
         Architecture · Design · Technology · Unified
       </motion.p>
       <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.4, ease: [0.22, 1, 0.36, 1] }} className="brio-heading-xl text-primary-foreground max-w-4xl">
