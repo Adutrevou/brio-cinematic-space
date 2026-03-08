@@ -19,7 +19,7 @@ const BlueprintAnimation = () => {
   // PHASE 8: Photo reveal (0.62–0.75) — blueprint fades, photo fades in, then zoom
   const blueprintOpacity = useTransform(scrollYProgress, [0.62, 0.72], [1, 0]);
   const photoOpacity = useTransform(scrollYProgress, [0.64, 0.75], [0, 1]);
-  const photoScale = useTransform(scrollYProgress, [0.64, 0.85], [1, 1.15]);
+  const photoScale = useTransform(scrollYProgress, [0.64, 0.90], [1, 1.45]);
 
   const l = (s: number, e: number) => useTransform(scrollYProgress, [s, e], [0, 1]);
 
