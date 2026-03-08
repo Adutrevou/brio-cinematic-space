@@ -1,7 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import outlineImage from "@/assets/blueprint-outline.png";
-import finalImage from "@/assets/blueprint-final.png";
 
 const BlueprintAnimation = () => {
   const ref = useRef(null);
@@ -10,220 +8,247 @@ const BlueprintAnimation = () => {
     offset: ["start end", "end start"],
   });
 
-  // Phase 1: SVG blueprint draws 0→0.38
-  // Phase 2: Blueprint fades, outline photo in 0.36→0.52
-  // Phase 3: Outline fades, final photo in 0.50→0.66
+  const gridOpacity = useTransform(scrollYProgress, [0, 0.06, 0.75, 0.85], [0, 0.04, 0.04, 0]);
+  const captionOpacity = useTransform(scrollYProgress, [0.03, 0.10], [0, 1]);
+  const closingOpacity = useTransform(scrollYProgress, [0.70, 0.80], [0, 1]);
 
-  const blueprintOpacity = useTransform(scrollYProgress, [0, 0.06, 0.38, 0.48], [0, 1, 1, 0]);
-  const outlineOpacity = useTransform(scrollYProgress, [0.36, 0.48, 0.54, 0.64], [0, 1, 1, 0]);
-  const outlineScale = useTransform(scrollYProgress, [0.36, 0.54], [1.03, 1]);
-  const finalOpacity = useTransform(scrollYProgress, [0.54, 0.68], [0, 1]);
-  const finalScale = useTransform(scrollYProgress, [0.54, 0.74], [1.05, 1]);
-  const gridOpacity = useTransform(scrollYProgress, [0, 0.06, 0.40, 0.50], [0, 0.03, 0.03, 0]);
+  // Glow behind the drawing
+  const glowOpacity = useTransform(scrollYProgress, [0.30, 0.50, 0.75, 0.85], [0, 0.06, 0.06, 0]);
 
-  const captionOpacity = useTransform(scrollYProgress, [0.04, 0.12], [0, 1]);
-  const closingOpacity = useTransform(scrollYProgress, [0.64, 0.74], [0, 1]);
-
-  // Line draw helper
   const l = (s: number, e: number) => useTransform(scrollYProgress, [s, e], [0, 1]);
 
-  // Stroke color
-  const s = "hsl(var(--foreground) / 0.7)";
-  const sf = "hsl(var(--foreground) / 0.4)"; // faint
-  const sm = "hsl(var(--muted-foreground) / 0.5)"; // muted
+  // Stroke styles
+  const bright = "hsl(var(--foreground) / 0.85)";
+  const mid = "hsl(var(--foreground) / 0.55)";
+  const faint = "hsl(var(--foreground) / 0.3)";
+  const accent = "hsl(var(--foreground) / 0.12)";
 
-  // === STRUCTURE (foundation up) ===
+  // ═══════════════════════════════════════
+  // PHASE 1: Foundation & Ground (0.04–0.14)
+  // ═══════════════════════════════════════
+  const groundMain = l(0.04, 0.12);
+  const groundSub = l(0.05, 0.13);
+  const foundation = l(0.06, 0.14);
 
-  // Ground line (full width)
-  const ground = l(0.04, 0.12);
+  // ═══════════════════════════════════════
+  // PHASE 2: Walls rise (0.08–0.24)
+  // ═══════════════════════════════════════
+  const leftWallOuter = l(0.08, 0.18);
+  const leftWallInner = l(0.09, 0.19);
+  const stoneJoints = [0, 1, 2, 3, 4, 5].map(i => l(0.14 + i * 0.007, 0.22 + i * 0.007));
+  const centerRecess = l(0.10, 0.20);
+  const glassFrame = l(0.11, 0.21);
+  const mullion1 = l(0.15, 0.23);
+  const mullion2 = l(0.16, 0.24);
+  const mullion3 = l(0.17, 0.25);
+  const rightWall = l(0.12, 0.22);
+  const rightInnerWalls = [0, 1, 2, 3].map(i => l(0.16 + i * 0.008, 0.24 + i * 0.008));
+  const rightDoor = l(0.20, 0.28);
+  const rightDoorInner = l(0.21, 0.29);
 
-  // Left stone block outer
-  const leftBlock = l(0.06, 0.16);
-  // Stone horizontal joints (6 lines)
-  const sj = [0, 1, 2, 3, 4, 5].map((i) => l(0.10 + i * 0.008, 0.18 + i * 0.008));
+  // ═══════════════════════════════════════
+  // PHASE 3: Roof caps it (0.18–0.30)
+  // ═══════════════════════════════════════
+  const roofLine1 = l(0.18, 0.26);
+  const roofLine2 = l(0.19, 0.27);
+  const roofStep = l(0.20, 0.28);
+  const roofCap = l(0.21, 0.29);
+  const soffit = l(0.22, 0.30);
 
-  // Roof lines
-  const roofTop = l(0.07, 0.15); // top thin line
-  const roofMain = l(0.08, 0.16); // main fascia
-  const roofStep = l(0.08, 0.16); // stepped portion left
-  const roofRight = l(0.09, 0.17); // right fascia
+  // ═══════════════════════════════════════
+  // PHASE 4: Details (0.24–0.40)
+  // ═══════════════════════════════════════
+  const intercom1 = l(0.24, 0.30);
+  const intercom2 = l(0.25, 0.31);
+  const featurePanel = l(0.26, 0.32);
+  const basePlatform = l(0.27, 0.33);
+  const steps = [0, 1].map(i => l(0.28 + i * 0.01, 0.34 + i * 0.01));
+  const uplights = [0, 1, 2, 3, 4].map(i => l(0.30 + i * 0.005, 0.36 + i * 0.005));
 
-  // Center-left recess panel
-  const recessPanel = l(0.10, 0.18);
-  const intercom1 = l(0.16, 0.22); // small box upper
-  const intercom2 = l(0.17, 0.23); // small box lower
-  const stepFeature = l(0.18, 0.24); // larger box at center
+  // ═══════════════════════════════════════
+  // PHASE 5: Interior glimpses (0.32–0.44)
+  // ═══════════════════════════════════════
+  const sofaL = l(0.32, 0.38);
+  const sofaBack = l(0.33, 0.39);
+  const coffeeTable = l(0.34, 0.40);
+  const indoorTree = l(0.35, 0.41);
+  const treePot = l(0.36, 0.42);
+  const pendantLine = l(0.37, 0.43);
+  const pendantShade = l(0.38, 0.44);
 
-  // Central glass wall
-  const glassOuter = l(0.11, 0.20);
-  const glassTop = l(0.12, 0.20);
-  const mullion1 = l(0.14, 0.22);
-  const mullion2 = l(0.15, 0.23);
-  const mullion3 = l(0.16, 0.24);
+  // ═══════════════════════════════════════
+  // PHASE 6: Landscape (0.40–0.52)
+  // ═══════════════════════════════════════
+  const treeTrunk1 = l(0.40, 0.46);
+  const treeCrown1a = l(0.41, 0.47);
+  const treeCrown1b = l(0.42, 0.48);
+  const treeTrunk2 = l(0.43, 0.49);
+  const treeCrown2 = l(0.44, 0.50);
+  const shrubs = [0, 1, 2, 3, 4].map(i => l(0.44 + i * 0.006, 0.50 + i * 0.006));
+  const walkwayLines = l(0.46, 0.52);
+  const waterFeature = l(0.47, 0.53);
 
-  // Right wing
-  const rightOuter = l(0.12, 0.21);
-  const rightMullions = [0, 1, 2, 3].map((i) => l(0.15 + i * 0.01, 0.23 + i * 0.01));
-  const rightDoor = l(0.18, 0.26);
-  const rightDoorInner = l(0.19, 0.27);
+  // ═══════════════════════════════════════
+  // PHASE 7: Annotations (0.52–0.64)
+  // ═══════════════════════════════════════
+  const dimH = l(0.52, 0.58);
+  const dimV = l(0.53, 0.59);
+  const dimTicks = l(0.54, 0.60);
+  const labelFade = useTransform(scrollYProgress, [0.58, 0.64], [0, 1]);
 
-  // Base platform / steps
-  const basePlatform = l(0.13, 0.22);
-  const stepLine1 = l(0.14, 0.23);
-  const stepLine2 = l(0.15, 0.24);
-
-  // Uplights (wavy/circle)
-  const uplights = [0, 1, 2, 3].map((i) => l(0.24 + i * 0.006, 0.30 + i * 0.006));
-
-  // Bottom walkway
-  const walkwayLeft = l(0.18, 0.26);
-  const walkwayRight = l(0.18, 0.26);
-  const walkwayBottom = l(0.20, 0.28);
-
-  // Landscape
-  const treeTrunk1 = l(0.26, 0.32);
-  const treeCrown1 = l(0.27, 0.33);
-  const shrub1 = l(0.28, 0.34);
-  const shrubTrunk1 = l(0.27, 0.33);
-
-  // Dimension lines
-  const dimBottom = l(0.30, 0.36);
-
-  // Labels
-  const labelOpacity = useTransform(scrollYProgress, [0.34, 0.40], [0, 1]);
+  // Subtle fill overlays
+  const fillLeft = useTransform(scrollYProgress, [0.50, 0.60], [0, 0.03]);
+  const fillGlass = useTransform(scrollYProgress, [0.52, 0.62], [0, 0.015]);
+  const fillRight = useTransform(scrollYProgress, [0.54, 0.64], [0, 0.025]);
 
   return (
-    <section ref={ref} className="relative" style={{ height: "280vh" }}>
+    <section ref={ref} className="relative" style={{ height: "320vh" }}>
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
-        {/* Grid bg */}
+        {/* Architectural grid */}
         <motion.div
           className="absolute inset-0 pointer-events-none"
           style={{
             opacity: gridOpacity,
-            backgroundImage: `linear-gradient(hsl(var(--foreground) / 0.15) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground) / 0.15) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(hsl(var(--foreground) / 0.2) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground) / 0.2) 1px, transparent 1px)`,
             backgroundSize: "40px 40px",
           }}
         />
 
+        {/* Center glow */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            opacity: glowOpacity,
+            background: `radial-gradient(ellipse 60% 50% at 50% 45%, hsl(var(--foreground) / 0.15), transparent)`,
+          }}
+        />
+
         <motion.p
-          className="brio-caption text-muted-foreground mb-6 md:mb-8"
+          className="brio-caption text-muted-foreground mb-6 md:mb-8 tracking-[0.3em] uppercase text-xs"
           style={{ opacity: captionOpacity }}
         >
           From Blueprint to Reality
         </motion.p>
 
         <div className="w-full max-w-5xl px-6 md:px-12 relative aspect-[16/9]">
-          {/* Phase 1: SVG Blueprint */}
-          <motion.div className="absolute inset-0 z-20" style={{ opacity: blueprintOpacity }}>
-            <svg viewBox="0 0 1600 900" className="w-full h-full" fill="none">
-              {/* ── GROUND LINE ── */}
-              <motion.line x1="0" y1="638" x2="1600" y2="638" stroke={s} strokeWidth="0.8" style={{ pathLength: ground }} />
+          <svg viewBox="0 0 1600 900" className="w-full h-full" fill="none">
 
-              {/* ── ROOF ── */}
-              {/* Top thin roof overhang line */}
-              <motion.line x1="175" y1="195" x2="1385" y2="195" stroke={sf} strokeWidth="0.5" style={{ pathLength: roofTop }} />
-              {/* Main roof fascia - left portion */}
-              <motion.line x1="168" y1="210" x2="920" y2="210" stroke={s} strokeWidth="0.8" style={{ pathLength: roofMain }} />
-              {/* Roof step-down connecting line */}
-              <motion.line x1="920" y1="210" x2="920" y2="220" stroke={s} strokeWidth="0.6" style={{ pathLength: roofStep }} />
-              {/* Right roof fascia */}
-              <motion.line x1="920" y1="220" x2="1385" y2="220" stroke={s} strokeWidth="0.7" style={{ pathLength: roofRight }} />
-              {/* Tiny roof cap top-left */}
-              <motion.line x1="168" y1="200" x2="180" y2="200" stroke={sf} strokeWidth="0.4" style={{ pathLength: roofTop }} />
+            {/* ── GROUND & FOUNDATION ── */}
+            <motion.line x1="0" y1="640" x2="1600" y2="640" stroke={bright} strokeWidth="0.8" style={{ pathLength: groundMain }} />
+            <motion.line x1="100" y1="648" x2="1500" y2="648" stroke={faint} strokeWidth="0.3" style={{ pathLength: groundSub }} />
+            <motion.rect x="160" y="640" width="1260" height="12" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: foundation }} />
 
-              {/* ── LEFT STONE BLOCK ── */}
-              <motion.rect x="180" y="228" width="360" height="410" stroke={s} strokeWidth="0.9" fill="none" style={{ pathLength: leftBlock }} />
-              {/* Horizontal stone joints */}
-              {sj.map((pl, i) => (
-                <motion.line key={`sj-${i}`} x1="180" y1={298 + i * 58} x2="540" y2={298 + i * 58} stroke={sf} strokeWidth="0.35" style={{ pathLength: pl }} />
-              ))}
-              {/* Top-left notch/step in stone block */}
-              <motion.line x1="180" y1="228" x2="180" y2="210" stroke={s} strokeWidth="0.6" style={{ pathLength: leftBlock }} />
-              <motion.line x1="168" y1="210" x2="180" y2="210" stroke={s} strokeWidth="0.6" style={{ pathLength: leftBlock }} />
+            {/* ── LEFT STONE BLOCK ── */}
+            <motion.rect x="180" y="230" width="360" height="410" stroke={bright} strokeWidth="1" fill="none" style={{ pathLength: leftWallOuter }} />
+            <motion.rect x="186" y="236" width="348" height="398" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: leftWallInner }} />
+            {stoneJoints.map((pl, i) => (
+              <motion.line key={`sj-${i}`} x1="180" y1={300 + i * 58} x2="540" y2={300 + i * 58} stroke={mid} strokeWidth="0.35" style={{ pathLength: pl }} />
+            ))}
+            {/* Corner detail */}
+            <motion.line x1="180" y1="230" x2="180" y2="212" stroke={mid} strokeWidth="0.6" style={{ pathLength: leftWallOuter }} />
+            <motion.line x1="168" y1="212" x2="182" y2="212" stroke={mid} strokeWidth="0.5" style={{ pathLength: leftWallOuter }} />
 
-              {/* ── CENTER-LEFT RECESS / ENTRY ── */}
-              <motion.rect x="540" y="228" width="130" height="410" stroke={s} strokeWidth="0.6" fill="none" style={{ pathLength: recessPanel }} />
-              {/* Intercom box 1 (upper small) */}
-              <motion.rect x="585" y="322" width="28" height="22" stroke={s} strokeWidth="0.5" fill="none" style={{ pathLength: intercom1 }} />
-              {/* Intercom box 2 (lower) */}
-              <motion.rect x="578" y="392" width="38" height="32" stroke={s} strokeWidth="0.5" fill="none" style={{ pathLength: intercom2 }} />
-              {/* Larger feature element (mail/panel) at center */}
-              <motion.rect x="638" y="472" width="48" height="42" stroke={s} strokeWidth="0.5" fill="none" style={{ pathLength: stepFeature }} />
+            {/* ── CENTER RECESS PANEL ── */}
+            <motion.rect x="540" y="230" width="130" height="410" stroke={mid} strokeWidth="0.6" fill="none" style={{ pathLength: centerRecess }} />
 
-              {/* ── CENTRAL GLASS WALL ── */}
-              <motion.rect x="670" y="228" width="400" height="410" stroke={s} strokeWidth="0.8" fill="none" style={{ pathLength: glassOuter }} />
-              {/* Glass header beam */}
-              <motion.line x1="670" y1="240" x2="1070" y2="240" stroke={sf} strokeWidth="0.4" style={{ pathLength: glassTop }} />
-              {/* 3 vertical mullions (4 panels) */}
-              <motion.line x1="770" y1="228" x2="770" y2="638" stroke={s} strokeWidth="0.6" style={{ pathLength: mullion1 }} />
-              <motion.line x1="870" y1="228" x2="870" y2="638" stroke={s} strokeWidth="0.6" style={{ pathLength: mullion2 }} />
-              <motion.line x1="970" y1="228" x2="970" y2="638" stroke={s} strokeWidth="0.6" style={{ pathLength: mullion3 }} />
+            {/* ── CENTRAL GLASS WALL ── */}
+            <motion.rect x="670" y="230" width="400" height="410" stroke={bright} strokeWidth="0.9" fill="none" style={{ pathLength: glassFrame }} />
+            <motion.line x1="670" y1="242" x2="1070" y2="242" stroke={faint} strokeWidth="0.35" style={{ pathLength: glassFrame }} />
+            <motion.line x1="770" y1="230" x2="770" y2="640" stroke={mid} strokeWidth="0.6" style={{ pathLength: mullion1 }} />
+            <motion.line x1="870" y1="230" x2="870" y2="640" stroke={mid} strokeWidth="0.6" style={{ pathLength: mullion2 }} />
+            <motion.line x1="970" y1="230" x2="970" y2="640" stroke={mid} strokeWidth="0.6" style={{ pathLength: mullion3 }} />
 
-              {/* ── RIGHT WING ── */}
-              <motion.rect x="1070" y="228" width="315" height="410" stroke={s} strokeWidth="0.8" fill="none" style={{ pathLength: rightOuter }} />
-              {/* Vertical mullions/columns in right wing */}
-              {rightMullions.map((pl, i) => (
-                <motion.line key={`rm-${i}`} x1={[1130, 1200, 1300, 1350][i]} y1="228" x2={[1130, 1200, 1300, 1350][i]} y2="638" stroke={sf} strokeWidth="0.45" style={{ pathLength: pl }} />
-              ))}
-              {/* Recessed door/window */}
-              <motion.rect x="1140" y="290" width="110" height="280" stroke={s} strokeWidth="0.7" fill="none" style={{ pathLength: rightDoor }} />
-              <motion.rect x="1155" y="310" width="80" height="240" stroke={sf} strokeWidth="0.4" fill="none" style={{ pathLength: rightDoorInner }} />
+            {/* ── RIGHT WING ── */}
+            <motion.rect x="1070" y="230" width="350" height="410" stroke={bright} strokeWidth="0.9" fill="none" style={{ pathLength: rightWall }} />
+            {rightInnerWalls.map((pl, i) => (
+              <motion.line key={`rw-${i}`} x1={[1130, 1210, 1320, 1380][i]} y1="230" x2={[1130, 1210, 1320, 1380][i]} y2="640" stroke={faint} strokeWidth="0.4" style={{ pathLength: pl }} />
+            ))}
+            <motion.rect x="1148" y="296" width="120" height="280" stroke={mid} strokeWidth="0.6" fill="none" style={{ pathLength: rightDoor }} />
+            <motion.rect x="1160" y="312" width="96" height="248" stroke={faint} strokeWidth="0.35" fill="none" style={{ pathLength: rightDoorInner }} />
 
-              {/* ── BASE PLATFORM / STEPS ── */}
-              <motion.rect x="580" y="638" width="490" height="24" stroke={s} strokeWidth="0.5" fill="none" style={{ pathLength: basePlatform }} />
-              <motion.line x1="600" y1="662" x2="1050" y2="662" stroke={sf} strokeWidth="0.4" style={{ pathLength: stepLine1 }} />
-              <motion.line x1="610" y1="672" x2="1040" y2="672" stroke={sf} strokeWidth="0.3" style={{ pathLength: stepLine2 }} />
+            {/* ── ROOF ── */}
+            <motion.line x1="160" y1="212" x2="930" y2="212" stroke={bright} strokeWidth="1" style={{ pathLength: roofLine1 }} />
+            <motion.line x1="160" y1="200" x2="930" y2="200" stroke={mid} strokeWidth="0.5" style={{ pathLength: roofLine2 }} />
+            <motion.line x1="930" y1="212" x2="930" y2="222" stroke={mid} strokeWidth="0.6" style={{ pathLength: roofStep }} />
+            <motion.line x1="930" y1="222" x2="1440" y2="222" stroke={bright} strokeWidth="0.8" style={{ pathLength: roofCap }} />
+            <motion.line x1="930" y1="196" x2="1440" y2="196" stroke={faint} strokeWidth="0.35" style={{ pathLength: soffit }} />
 
-              {/* Uplights along step edge */}
-              {uplights.map((pl, i) => (
-                <motion.path key={`ul-${i}`} d={`M${720 + i * 60},652 q4,-6 8,0 q4,6 8,0`} stroke={sf} strokeWidth="0.4" fill="none" style={{ pathLength: pl }} />
-              ))}
+            {/* ── DETAILS ── */}
+            <motion.rect x="588" y="324" width="26" height="20" stroke={mid} strokeWidth="0.5" fill="none" style={{ pathLength: intercom1 }} />
+            <motion.rect x="580" y="394" width="36" height="30" stroke={mid} strokeWidth="0.5" fill="none" style={{ pathLength: intercom2 }} />
+            <motion.rect x="640" y="478" width="46" height="38" stroke={mid} strokeWidth="0.5" fill="none" style={{ pathLength: featurePanel }} />
 
-              {/* ── BOTTOM WALKWAY ── */}
-              <motion.line x1="640" y1="672" x2="640" y2="820" stroke={sf} strokeWidth="0.4" style={{ pathLength: walkwayLeft }} />
-              <motion.line x1="960" y1="672" x2="960" y2="820" stroke={sf} strokeWidth="0.4" style={{ pathLength: walkwayRight }} />
-              <motion.line x1="580" y1="820" x2="1050" y2="820" stroke={sf} strokeWidth="0.35" style={{ pathLength: walkwayBottom }} />
-              {/* Center line of walkway */}
-              <motion.line x1="800" y1="672" x2="800" y2="820" stroke={sm} strokeWidth="0.2" strokeDasharray="4 6" style={{ pathLength: walkwayBottom }} />
+            {/* ── BASE & STEPS ── */}
+            <motion.rect x="580" y="640" width="490" height="22" stroke={mid} strokeWidth="0.5" fill="none" style={{ pathLength: basePlatform }} />
+            {steps.map((pl, i) => (
+              <motion.line key={`st-${i}`} x1={600 + i * 10} y1={662 + i * 12} x2={1050 - i * 10} y2={662 + i * 12} stroke={faint} strokeWidth="0.4" style={{ pathLength: pl }} />
+            ))}
+            {/* Uplights */}
+            {uplights.map((pl, i) => (
+              <motion.circle key={`ul-${i}`} cx={700 + i * 52} cy="654" r="3" stroke={mid} strokeWidth="0.4" fill="none" style={{ pathLength: pl }} />
+            ))}
 
-              {/* ── LANDSCAPE ── */}
-              {/* Left tree (small circle + trunk) */}
-              <motion.line x1="250" y1="638" x2="250" y2="605" stroke={sf} strokeWidth="0.4" style={{ pathLength: treeTrunk1 }} />
-              <motion.circle cx="250" cy="592" r="16" stroke={sf} strokeWidth="0.4" fill="none" style={{ pathLength: treeCrown1 }} />
-              {/* Second small shrub/tree */}
-              <motion.line x1="370" y1="638" x2="370" y2="612" stroke={sf} strokeWidth="0.35" style={{ pathLength: shrubTrunk1 }} />
-              <motion.circle cx="370" cy="602" r="12" stroke={sf} strokeWidth="0.35" fill="none" style={{ pathLength: shrub1 }} />
+            {/* ── INTERIOR ── */}
+            <motion.rect x="730" y="520" width="100" height="40" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: sofaL }} />
+            <motion.rect x="730" y="500" width="100" height="20" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: sofaBack }} />
+            <motion.rect x="750" y="570" width="60" height="30" stroke={faint} strokeWidth="0.2" fill="none" style={{ pathLength: coffeeTable }} />
+            {/* Indoor tree */}
+            <motion.line x1="920" y1="640" x2="920" y2="490" stroke={faint} strokeWidth="0.3" style={{ pathLength: indoorTree }} />
+            <motion.circle cx="920" cy="472" r="28" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: indoorTree }} />
+            <motion.rect x="906" y="610" width="28" height="30" stroke={faint} strokeWidth="0.2" fill="none" style={{ pathLength: treePot }} />
+            {/* Pendant light */}
+            <motion.line x1="800" y1="230" x2="800" y2="340" stroke={faint} strokeWidth="0.25" style={{ pathLength: pendantLine }} />
+            <motion.ellipse cx="800" cy="348" rx="14" ry="6" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: pendantShade }} />
 
-              {/* ── DIMENSION / ANNOTATION LINES ── */}
-              <motion.line x1="180" y1="860" x2="1385" y2="860" stroke={sm} strokeWidth="0.3" strokeDasharray="4 4" style={{ pathLength: dimBottom }} />
-              {[180, 540, 670, 1070, 1385].map((x, i) => (
-                <motion.line key={`tick-${i}`} x1={x} y1="855" x2={x} y2="865" stroke={sm} strokeWidth="0.3" style={{ pathLength: dimBottom }} />
-              ))}
+            {/* ── LANDSCAPE ── */}
+            {/* Tree 1 */}
+            <motion.line x1="240" y1="640" x2="240" y2="560" stroke={mid} strokeWidth="0.45" style={{ pathLength: treeTrunk1 }} />
+            <motion.circle cx="240" cy="538" r="26" stroke={mid} strokeWidth="0.4" fill="none" style={{ pathLength: treeCrown1a }} />
+            <motion.circle cx="256" cy="550" r="16" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: treeCrown1b }} />
+            {/* Tree 2 */}
+            <motion.line x1="1400" y1="640" x2="1400" y2="565" stroke={mid} strokeWidth="0.4" style={{ pathLength: treeTrunk2 }} />
+            <motion.circle cx="1400" cy="542" r="24" stroke={mid} strokeWidth="0.4" fill="none" style={{ pathLength: treeCrown2 }} />
+            {/* Shrubs */}
+            {shrubs.map((pl, i) => (
+              <motion.ellipse key={`sh-${i}`} cx={[320, 440, 1260, 1340, 1460][i]} cy="632" rx="18" ry="10" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: pl }} />
+            ))}
+            {/* Walkway */}
+            <motion.line x1="660" y1="674" x2="660" y2="830" stroke={faint} strokeWidth="0.4" style={{ pathLength: walkwayLines }} />
+            <motion.line x1="940" y1="674" x2="940" y2="830" stroke={faint} strokeWidth="0.4" style={{ pathLength: walkwayLines }} />
+            <motion.line x1="600" y1="830" x2="1000" y2="830" stroke={faint} strokeWidth="0.3" style={{ pathLength: walkwayLines }} />
+            {/* Water feature */}
+            <motion.rect x="440" y="680" width="160" height="100" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: waterFeature }} />
+            <motion.rect x="1000" y="680" width="160" height="100" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: waterFeature }} />
 
-              {/* Labels */}
-              <motion.text x="360" y="880" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.18em" style={{ opacity: labelOpacity }}>
-                STONE FACADE
-              </motion.text>
-              <motion.text x="870" y="880" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.18em" style={{ opacity: labelOpacity }}>
-                GLASS PAVILION
-              </motion.text>
-              <motion.text x="1228" y="880" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.18em" style={{ opacity: labelOpacity }}>
-                PRIVATE WING
-              </motion.text>
-            </svg>
-          </motion.div>
+            {/* ── ANNOTATIONS ── */}
+            <motion.line x1="180" y1="870" x2="1420" y2="870" stroke={accent} strokeWidth="0.4" strokeDasharray="4 4" style={{ pathLength: dimH }} />
+            {[180, 540, 670, 1070, 1420].map((x, i) => (
+              <motion.line key={`t-${i}`} x1={x} y1="865" x2={x} y2="875" stroke={accent} strokeWidth="0.4" style={{ pathLength: dimTicks }} />
+            ))}
+            <motion.line x1="110" y1="200" x2="110" y2="640" stroke={accent} strokeWidth="0.4" strokeDasharray="4 4" style={{ pathLength: dimV }} />
+            {[200, 430, 640].map((y, i) => (
+              <motion.line key={`tv-${i}`} x1="105" y1={y} x2="115" y2={y} stroke={accent} strokeWidth="0.4" style={{ pathLength: dimTicks }} />
+            ))}
 
-          {/* Phase 2: Outline photo */}
-          <motion.div className="absolute inset-0 z-10 overflow-hidden" style={{ opacity: outlineOpacity, scale: outlineScale }}>
-            <img src={outlineImage} alt="Architectural outline with ambient lighting" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-background/20" />
-          </motion.div>
+            {/* Labels */}
+            <motion.text x="360" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
+              STONE FACADE
+            </motion.text>
+            <motion.text x="870" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
+              GLASS PAVILION
+            </motion.text>
+            <motion.text x="1245" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
+              PRIVATE WING
+            </motion.text>
+            <motion.text x="90" y="425" textAnchor="middle" className="fill-muted-foreground" fontSize="9" fontFamily="var(--font-sans)" letterSpacing="0.15em" transform="rotate(-90, 90, 425)" style={{ opacity: labelFade }}>
+              ELEVATION 4.2m
+            </motion.text>
 
-          {/* Phase 3: Final photo */}
-          <motion.div className="absolute inset-0 z-0 overflow-hidden" style={{ opacity: finalOpacity, scale: finalScale }}>
-            <img src={finalImage} alt="Completed Brio luxury residence" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
-          </motion.div>
+            {/* Subtle fills */}
+            <motion.rect x="180" y="230" width="360" height="410" fill="hsl(var(--foreground))" stroke="none" style={{ opacity: fillLeft }} />
+            <motion.rect x="670" y="230" width="400" height="410" fill="hsl(var(--foreground))" stroke="none" style={{ opacity: fillGlass }} />
+            <motion.rect x="1070" y="230" width="350" height="410" fill="hsl(var(--foreground))" stroke="none" style={{ opacity: fillRight }} />
+          </svg>
         </div>
 
         <motion.p
