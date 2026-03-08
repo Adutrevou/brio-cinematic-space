@@ -67,17 +67,17 @@ const HeroSection = () => (
 
     <div className="relative z-10 h-full flex flex-col items-center justify-end pb-24 md:pb-32 px-6 text-center">
       <motion.img src={brioLogo} alt="BRIO" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.6 }} className="w-48 md:w-64 mb-8" />
-      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }} className="brio-caption text-primary-foreground/70 mb-6">
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }} className="brio-caption text-white mb-6">
         Architecture · Design · Technology · Unified
       </motion.p>
-      <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.4, ease: [0.22, 1, 0.36, 1] }} className="brio-heading-xl text-primary-foreground max-w-4xl">
+      <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.4, ease: [0.22, 1, 0.36, 1] }} className="brio-heading-xl text-white max-w-4xl">
         Design That Shapes Lifetimes
       </motion.h1>
-      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.8 }} className="brio-body text-primary-foreground/60 max-w-xl mt-6">
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.8 }} className="brio-body text-white/80 max-w-xl mt-6">
         Brio started when two brothers combined their deep love for design with a simple belief: your home should tell your story. We design architecture, interiors, and smart home systems to create spaces that go beyond beauty — they feel personal.
       </motion.p>
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.2 }} className="mt-10 flex flex-col sm:flex-row gap-4">
-        <Link to="/projects" className="brio-caption text-white border border-white/60 px-8 py-3 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-500">
+        <Link to="/projects" className="brio-caption text-foreground bg-white/90 backdrop-blur-sm px-8 py-3 hover:bg-white transition-all duration-500">
           View Our Work
         </Link>
         <Link to="/contact" className="brio-caption text-foreground bg-white/90 backdrop-blur-sm px-8 py-3 hover:bg-white transition-all duration-500">
