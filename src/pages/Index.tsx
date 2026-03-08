@@ -53,7 +53,7 @@ const HeroSection = () => (
       className="absolute inset-0"
     >
       <div className="absolute inset-0 bg-cover bg-center animate-slow-zoom" style={{ backgroundImage: `url(${heroImage})` }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/10 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background" />
     </motion.div>
 
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
