@@ -16,11 +16,11 @@ const BlueprintAnimation = () => {
   // Glow behind the drawing
   const glowOpacity = useTransform(scrollYProgress, [0.30, 0.50, 0.62, 0.70], [0, 0.06, 0.06, 0]);
 
-  // PHASE 8: Blueprint zooms in, then crossfades to photo
-  const blueprintScale = useTransform(scrollYProgress, [0.55, 0.70], [1, 1.35]);
-  const blueprintOpacity = useTransform(scrollYProgress, [0.66, 0.75], [1, 0]);
-  const photoOpacity = useTransform(scrollYProgress, [0.68, 0.78], [0, 1]);
-  const photoScale = useTransform(scrollYProgress, [0.68, 0.90], [1.35, 1.45]);
+  // PHASE 8: Blueprint zooms in, then crossfades to photo — all done by 0.75
+  const blueprintScale = useTransform(scrollYProgress, [0.50, 0.62], [1, 1.35]);
+  const blueprintOpacity = useTransform(scrollYProgress, [0.58, 0.66], [1, 0]);
+  const photoOpacity = useTransform(scrollYProgress, [0.60, 0.68], [0, 1]);
+  const photoScale = useTransform(scrollYProgress, [0.60, 0.80], [1.35, 1.45]);
 
   const l = (s: number, e: number) => useTransform(scrollYProgress, [s, e], [0, 1]);
 
