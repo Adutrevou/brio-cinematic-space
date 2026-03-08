@@ -73,7 +73,7 @@ const Contact = () => {
               <select
                 value={formData.project}
                 onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                className="w-full bg-transparent border-b border-border pb-3 font-sans text-base font-light text-foreground outline-none focus:border-foreground transition-colors duration-500 appearance-none"
+                className="w-full bg-background border-b border-border pb-3 font-sans text-base font-light text-foreground outline-none focus:border-foreground transition-colors duration-500 appearance-none"
               >
                 <option value="">Select a service</option>
                 <option value="architecture">Architecture — New Build</option>
