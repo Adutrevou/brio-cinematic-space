@@ -16,6 +16,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === "/";
+  const useLightText = isHome && !scrolled;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -45,7 +47,7 @@ const Navbar = () => {
               src={brioLogo}
               alt="BRIO - Concepts & Design"
               className={`h-10 w-auto transition-all duration-700 ${
-                scrolled ? "invert" : ""
+                useLightText ? "" : "invert"
               }`}
             />
           </Link>
@@ -58,8 +60,8 @@ const Navbar = () => {
                 to={item.path}
                 className={`brio-caption transition-colors duration-500 ${
                   location.pathname === item.path
-                    ? scrolled ? "text-foreground" : "text-white"
-                    : scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/70 hover:text-white"
+                    ? useLightText ? "text-white" : "text-foreground"
+                    : useLightText ? "text-white/70 hover:text-white" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.label}
@@ -72,9 +74,9 @@ const Navbar = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden flex flex-col gap-1.5"
           >
-            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }} className="block w-6 h-px bg-foreground" />
-            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className="block w-6 h-px bg-foreground" />
-            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }} className="block w-6 h-px bg-foreground" />
+            <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }} className={`block w-6 h-px ${useLightText ? "bg-white" : "bg-foreground"}`} />
+            <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className={`block w-6 h-px ${useLightText ? "bg-white" : "bg-foreground"}`} />
+            <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }} className={`block w-6 h-px ${useLightText ? "bg-white" : "bg-foreground"}`} />
           </button>
         </div>
       </motion.nav>
