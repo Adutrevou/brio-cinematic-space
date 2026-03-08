@@ -4,7 +4,7 @@ import brioLogo from "@/assets/brio-logo-white.png";
 const Footer = () => (
   <footer className="px-6 md:px-12 lg:px-24 py-16 border-t border-border">
     <div className="brio-container">
-      <div className="grid grid-cols-1 md:cols-4 gap-12 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         <div>
           <Link to="/" className="inline-block">
             <img src={brioLogo} alt="BRIO - Concepts & Design" className="h-10 w-auto invert" />
