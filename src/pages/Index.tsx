@@ -57,6 +57,14 @@ const HeroSection = () => (
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 via-60% to-[hsl(220,15%,8%)]" />
     </motion.div>
 
+    {/* Soft bottom fade overlay */}
+    <div
+      className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-20"
+      style={{
+        background: "linear-gradient(to bottom, transparent, hsl(220 15% 8% / 0.6) 40%, hsl(220 15% 8%))",
+      }}
+    />
+
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <svg viewBox="0 0 800 400" className="w-full max-w-4xl opacity-[0.06]" fill="none" stroke="currentColor" strokeWidth="0.5">
         <motion.rect x="100" y="50" width="300" height="200" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 3, delay: 0.5, ease: "easeInOut" }} className="text-foreground" />
