@@ -139,10 +139,17 @@ const BlueprintAnimation = () => {
         <div className="w-full max-w-5xl px-6 md:px-12 relative aspect-[16/9]">
           {/* Photo reveal layer — aligned to building footprint */}
           <motion.div
-            className="absolute inset-0 pointer-events-none overflow-hidden"
+            className="absolute pointer-events-none overflow-hidden"
             style={{
               opacity: photoOpacity,
               scale: photoScale,
+              /* Position to match SVG building footprint:
+                 SVG: x 180-1420 of 1600 = 11.25% to 88.75%
+                 SVG: y 196-662 of 900 = 21.8% to 73.6% */
+              top: "0%",
+              left: "0%",
+              width: "100%",
+              height: "100%",
             }}
           >
             <img
@@ -150,15 +157,14 @@ const BlueprintAnimation = () => {
               alt="Completed Brio residence"
               className="absolute"
               style={{
-                /* Align photo's building to SVG coordinates:
-                   SVG building: x 180-1420 (77.5% of 1600), y 196-662 (51.8% of 900)
-                   Photo building sits ~center with sky above */
-                top: "-8%",
-                left: "0%",
-                width: "100%",
-                height: "120%",
+                /* The photo building is roughly centered horizontally (10%-90% of image)
+                   and vertically ~25%-80%. Match to SVG coords. */
+                top: "10%",
+                left: "3%",
+                width: "94%",
+                height: "80%",
                 objectFit: "cover",
-                objectPosition: "50% 42%",
+                objectPosition: "50% 48%",
               }}
             />
           </motion.div>
