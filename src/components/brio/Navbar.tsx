@@ -47,7 +47,7 @@ const Navbar = () => {
               src={brioLogo}
               alt="BRIO - Concepts & Design"
               className={`h-10 w-auto transition-all duration-700 ${
-                scrolled ? "invert" : ""
+                useLightText ? "" : "invert"
               }`}
             />
           </Link>
