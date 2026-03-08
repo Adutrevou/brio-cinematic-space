@@ -5,6 +5,7 @@ import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import SmartHomeSection from "@/components/brio/SmartHomeSection";
 import heroImage from "@/assets/hero-residence.jpg";
+import brioLogo from "@/assets/brio-logo-white.png";
 import aboutStudio from "@/assets/about-studio.jpg";
 import projectNamib from "@/assets/project-namib.jpg";
 import projectIslands from "@/assets/project-islands.jpg";
@@ -65,6 +66,7 @@ const HeroSection = () => (
     </div>
 
     <div className="relative z-10 h-full flex flex-col items-center justify-end pb-24 md:pb-32 px-6 text-center">
+      <motion.img src={brioLogo} alt="BRIO" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.6 }} className="w-48 md:w-64 mb-8" />
       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }} className="brio-caption text-primary-foreground/70 mb-6">
         Architecture · Design · Technology · Unified
       </motion.p>
