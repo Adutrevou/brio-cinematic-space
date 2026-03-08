@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import PageHero from "@/components/brio/PageHero";
-import contactHero from "@/assets/contact-hero.jpg";
+
 
 const Contact = () => {
   const ref = useRef(null);

@@ -1,12 +1,9 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import PageHero from "@/components/brio/PageHero";
-import aboutStudio from "@/assets/about-studio.jpg";
-import aboutMaterials from "@/assets/about-materials.jpg";
-import heroAerial from "@/assets/hero-aerial.jpg";
 
 const principles = [
   { number: "01", title: "Intention Over Spectacle", text: "Every line, material, and space serves a purpose. We design for how you live, not for how things look on a screen. True luxury is felt, not displayed." },
