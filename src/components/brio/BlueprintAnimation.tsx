@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import blueprintFinal from "@/assets/blueprint-final.png";
 
 const BlueprintAnimation = () => {
   const ref = useRef(null);
