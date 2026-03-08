@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import blueprintFinal from "@/assets/blueprint-final.png";
 
 const BlueprintAnimation = () => {
   const ref = useRef(null);
@@ -8,12 +9,17 @@ const BlueprintAnimation = () => {
     offset: ["start end", "end start"],
   });
 
-  const gridOpacity = useTransform(scrollYProgress, [0, 0.06, 0.75, 0.85], [0, 0.04, 0.04, 0]);
-  const captionOpacity = useTransform(scrollYProgress, [0.03, 0.10], [0, 1]);
+  const gridOpacity = useTransform(scrollYProgress, [0, 0.06, 0.62, 0.70], [0, 0.04, 0.04, 0]);
+  const captionOpacity = useTransform(scrollYProgress, [0.03, 0.10, 0.64, 0.72], [0, 1, 1, 0]);
   const closingOpacity = useTransform(scrollYProgress, [0.70, 0.80], [0, 1]);
 
   // Glow behind the drawing
-  const glowOpacity = useTransform(scrollYProgress, [0.30, 0.50, 0.75, 0.85], [0, 0.06, 0.06, 0]);
+  const glowOpacity = useTransform(scrollYProgress, [0.30, 0.50, 0.62, 0.70], [0, 0.06, 0.06, 0]);
+
+  // PHASE 8: Photo reveal (0.65–0.78) — blueprint fades, photo fades in
+  const blueprintOpacity = useTransform(scrollYProgress, [0.64, 0.74], [1, 0]);
+  const photoOpacity = useTransform(scrollYProgress, [0.66, 0.78], [0, 1]);
+  const photoScale = useTransform(scrollYProgress, [0.66, 0.78], [1.02, 1]);
 
   const l = (s: number, e: number) => useTransform(scrollYProgress, [s, e], [0, 1]);
 
@@ -131,7 +137,27 @@ const BlueprintAnimation = () => {
         </motion.p>
 
         <div className="w-full max-w-5xl px-6 md:px-12 relative aspect-[16/9]">
-          <svg viewBox="0 0 1600 900" className="w-full h-full" fill="none">
+          {/* Photo reveal layer — aligned to building footprint */}
+          <motion.div
+            className="absolute pointer-events-none"
+            style={{
+              opacity: photoOpacity,
+              scale: photoScale,
+              top: "10%",
+              left: "4%",
+              right: "4%",
+              bottom: "3%",
+            }}
+          >
+            <img
+              src={blueprintFinal}
+              alt="Completed Brio residence"
+              className="w-full h-full object-cover object-center"
+            />
+          </motion.div>
+
+          {/* Blueprint SVG layer */}
+          <motion.svg viewBox="0 0 1600 900" className="w-full h-full relative z-10" fill="none" style={{ opacity: blueprintOpacity }}>
 
             {/* ── GROUND & FOUNDATION ── */}
             <motion.line x1="0" y1="640" x2="1600" y2="640" stroke={bright} strokeWidth="0.8" style={{ pathLength: groundMain }} />
@@ -183,7 +209,6 @@ const BlueprintAnimation = () => {
             {steps.map((pl, i) => (
               <motion.line key={`st-${i}`} x1={600 + i * 10} y1={662 + i * 12} x2={1050 - i * 10} y2={662 + i * 12} stroke={faint} strokeWidth="0.4" style={{ pathLength: pl }} />
             ))}
-            {/* Uplights */}
             {uplights.map((pl, i) => (
               <motion.circle key={`ul-${i}`} cx={700 + i * 52} cy="654" r="3" stroke={mid} strokeWidth="0.4" fill="none" style={{ pathLength: pl }} />
             ))}
@@ -192,31 +217,24 @@ const BlueprintAnimation = () => {
             <motion.rect x="730" y="520" width="100" height="40" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: sofaL }} />
             <motion.rect x="730" y="500" width="100" height="20" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: sofaBack }} />
             <motion.rect x="750" y="570" width="60" height="30" stroke={faint} strokeWidth="0.2" fill="none" style={{ pathLength: coffeeTable }} />
-            {/* Indoor tree */}
             <motion.line x1="920" y1="640" x2="920" y2="490" stroke={faint} strokeWidth="0.3" style={{ pathLength: indoorTree }} />
             <motion.circle cx="920" cy="472" r="28" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: indoorTree }} />
             <motion.rect x="906" y="610" width="28" height="30" stroke={faint} strokeWidth="0.2" fill="none" style={{ pathLength: treePot }} />
-            {/* Pendant light */}
             <motion.line x1="800" y1="230" x2="800" y2="340" stroke={faint} strokeWidth="0.25" style={{ pathLength: pendantLine }} />
             <motion.ellipse cx="800" cy="348" rx="14" ry="6" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: pendantShade }} />
 
             {/* ── LANDSCAPE ── */}
-            {/* Tree 1 */}
             <motion.line x1="240" y1="640" x2="240" y2="560" stroke={mid} strokeWidth="0.45" style={{ pathLength: treeTrunk1 }} />
             <motion.circle cx="240" cy="538" r="26" stroke={mid} strokeWidth="0.4" fill="none" style={{ pathLength: treeCrown1a }} />
             <motion.circle cx="256" cy="550" r="16" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: treeCrown1b }} />
-            {/* Tree 2 */}
             <motion.line x1="1400" y1="640" x2="1400" y2="565" stroke={mid} strokeWidth="0.4" style={{ pathLength: treeTrunk2 }} />
             <motion.circle cx="1400" cy="542" r="24" stroke={mid} strokeWidth="0.4" fill="none" style={{ pathLength: treeCrown2 }} />
-            {/* Shrubs */}
             {shrubs.map((pl, i) => (
               <motion.ellipse key={`sh-${i}`} cx={[320, 440, 1260, 1340, 1460][i]} cy="632" rx="18" ry="10" stroke={faint} strokeWidth="0.3" fill="none" style={{ pathLength: pl }} />
             ))}
-            {/* Walkway */}
             <motion.line x1="660" y1="674" x2="660" y2="830" stroke={faint} strokeWidth="0.4" style={{ pathLength: walkwayLines }} />
             <motion.line x1="940" y1="674" x2="940" y2="830" stroke={faint} strokeWidth="0.4" style={{ pathLength: walkwayLines }} />
             <motion.line x1="600" y1="830" x2="1000" y2="830" stroke={faint} strokeWidth="0.3" style={{ pathLength: walkwayLines }} />
-            {/* Water feature */}
             <motion.rect x="440" y="680" width="160" height="100" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: waterFeature }} />
             <motion.rect x="1000" y="680" width="160" height="100" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: waterFeature }} />
 
@@ -248,7 +266,7 @@ const BlueprintAnimation = () => {
             <motion.rect x="180" y="230" width="360" height="410" fill="hsl(var(--foreground))" stroke="none" style={{ opacity: fillLeft }} />
             <motion.rect x="670" y="230" width="400" height="410" fill="hsl(var(--foreground))" stroke="none" style={{ opacity: fillGlass }} />
             <motion.rect x="1070" y="230" width="350" height="410" fill="hsl(var(--foreground))" stroke="none" style={{ opacity: fillRight }} />
-          </svg>
+          </motion.svg>
         </div>
 
         <motion.p
