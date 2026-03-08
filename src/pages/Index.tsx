@@ -59,9 +59,9 @@ const HeroSection = () => (
 
     {/* Soft bottom fade overlay */}
     <div
-      className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-20"
+      className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none z-20"
       style={{
-        background: "linear-gradient(to bottom, transparent, hsl(220 15% 8% / 0.6) 40%, hsl(220 15% 8%))",
+        background: "linear-gradient(to bottom, transparent 0%, hsl(220 15% 8% / 0.3) 30%, hsl(220 15% 8% / 0.7) 60%, hsl(220 15% 8%) 100%)",
       }}
     />
 
