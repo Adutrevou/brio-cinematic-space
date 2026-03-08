@@ -109,7 +109,7 @@ const BlueprintAnimation = () => {
   const fillRight = useTransform(scrollYProgress, [0.54, 0.64], [0, 0.025]);
 
   return (
-    <section ref={ref} className="relative" style={{ height: "200vh" }}>
+    <section ref={ref} className="relative" style={{ height: "230vh" }}>
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
         {/* Architectural grid */}
         <motion.div
