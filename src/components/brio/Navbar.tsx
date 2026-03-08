@@ -56,8 +56,8 @@ const Navbar = () => {
                 to={item.path}
                 className={`brio-caption transition-colors duration-500 ${
                   location.pathname === item.path
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-white"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
                 {item.label}
