@@ -208,7 +208,7 @@ const FeaturedProjects = () => {
                   <motion.rect
                     x="0" y="0" width="400" height="300"
                     stroke="currentColor" strokeWidth="0.5"
-                    className="text-primary-foreground/30"
+                    className="text-white/30"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={hoveredIndex === i ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}

@@ -75,13 +75,13 @@ const Contact = () => {
                 onChange={(e) => setFormData({ ...formData, project: e.target.value })}
                 className="w-full bg-background border-b border-border pb-3 font-sans text-base font-light text-foreground outline-none focus:border-foreground transition-colors duration-500 appearance-none"
               >
-                <option value="">Select a service</option>
-                <option value="architecture">Architecture — New Build</option>
-                <option value="renovation">Architecture — Renovation</option>
-                <option value="interior">Interior Design</option>
-                <option value="technology">Smart Home / Technology</option>
-                <option value="cinema">Private Cinema</option>
-                <option value="other">Other / Not Sure Yet</option>
+                <option value="" className="bg-background text-foreground">Select a service</option>
+                <option value="architecture" className="bg-background text-foreground">Architecture — New Build</option>
+                <option value="renovation" className="bg-background text-foreground">Architecture — Renovation</option>
+                <option value="interior" className="bg-background text-foreground">Interior Design</option>
+                <option value="technology" className="bg-background text-foreground">Smart Home / Technology</option>
+                <option value="cinema" className="bg-background text-foreground">Private Cinema</option>
+                <option value="other" className="bg-background text-foreground">Other / Not Sure Yet</option>
               </select>
             </div>
             <div>
