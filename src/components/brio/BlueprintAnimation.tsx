@@ -171,7 +171,7 @@ const BlueprintAnimation = () => {
           </motion.div>
 
           {/* Blueprint SVG layer */}
-          <motion.svg viewBox="0 0 1600 900" className="w-full h-full relative z-10" fill="none" style={{ opacity: blueprintOpacity }}>
+          <motion.svg viewBox="0 0 1600 900" className="w-full h-full relative z-10" fill="none" style={{ opacity: blueprintOpacity, scale: blueprintScale }}>
 
             {/* ── GROUND & FOUNDATION ── */}
             <motion.line x1="0" y1="640" x2="1600" y2="640" stroke={bright} strokeWidth="0.8" style={{ pathLength: groundMain }} />
