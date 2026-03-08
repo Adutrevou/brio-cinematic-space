@@ -5,6 +5,7 @@ import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import SmartHomeSection from "@/components/brio/SmartHomeSection";
 import heroImage from "@/assets/hero-residence.jpg";
+import brioLogo from "@/assets/brio-logo-white.png";
 import aboutStudio from "@/assets/about-studio.jpg";
 import projectNamib from "@/assets/project-namib.jpg";
 import projectIslands from "@/assets/project-islands.jpg";
