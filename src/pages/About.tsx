@@ -240,61 +240,48 @@ const ApproachSection = () => {
 
   return (
     <section className="brio-section" ref={ref}>
-      <div className="brio-container grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-        <div>
-          <motion.p
-            initial={{ opacity: 0, x: -16 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="brio-caption text-muted-foreground mb-8"
-          >
-            Our Approach
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="brio-heading-lg mb-8"
-          >
-            Architecture, interiors, and technology — designed as one
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="brio-body text-muted-foreground mb-6"
-          >
-            Most studios treat architecture, interior design, and home technology as separate disciplines. At Brio, they are one unified practice. From the first sketch to the final handover, every decision is made holistically — because a truly exceptional home is one where structure, surface, and system exist in harmony.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="brio-body text-muted-foreground mb-10"
-          >
-            This integrated approach means fewer compromises, more coherence, and a home that feels effortlessly complete. Whether we shape an entire home or craft a singular, bespoke feature, we follow a process driven by the belief that elegance emerges from restraint, precision, and a quiet boldness that stands the test of time.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Link to="/process" className="brio-caption text-foreground border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-500">
-              Explore Our Process
-            </Link>
-          </motion.div>
-        </div>
-        <div ref={imageRef} className="aspect-[4/3] overflow-hidden relative">
-          <motion.img
-            src={heroAerial}
-            alt="Aerial view of Brio-designed luxury residence"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ y: imageY }}
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={inView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 1.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          />
-        </div>
+      <div className="brio-container max-w-3xl">
+        <motion.p
+          initial={{ opacity: 0, x: -16 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="brio-caption text-muted-foreground mb-8"
+        >
+          Our Approach
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="brio-heading-lg mb-8"
+        >
+          Architecture, interiors, and technology — designed as one
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="brio-body text-muted-foreground mb-6"
+        >
+          Most studios treat architecture, interior design, and home technology as separate disciplines. At Brio, they are one unified practice. From the first sketch to the final handover, every decision is made holistically — because a truly exceptional home is one where structure, surface, and system exist in harmony.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="brio-body text-muted-foreground mb-10"
+        >
+          This integrated approach means fewer compromises, more coherence, and a home that feels effortlessly complete. Whether we shape an entire home or craft a singular, bespoke feature, we follow a process driven by the belief that elegance emerges from restraint, precision, and a quiet boldness that stands the test of time.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Link to="/process" className="brio-caption text-foreground border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-500">
+            Explore Our Process
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

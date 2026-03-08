@@ -40,9 +40,6 @@ const Contact = () => {
                 </div>
               ))}
             </div>
-            <div className="aspect-[4/3] overflow-hidden">
-              <img src={contactHero} alt="Brio-designed residence — we'd love to design yours" className="w-full h-full object-cover" />
-            </div>
           </motion.div>
 
           {/* Form */}
