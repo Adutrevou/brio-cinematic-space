@@ -116,9 +116,6 @@ const StatsSection = () => {
 const WhyUsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const imageRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: imageRef, offset: ["start end", "end start"] });
-  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.12, 1]);
 
   return (
     <section className="brio-section" ref={ref}>
