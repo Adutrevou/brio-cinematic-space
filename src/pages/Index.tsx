@@ -70,7 +70,7 @@ const HeroSection = () => (
       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }} className="brio-caption text-white mb-6">
         Architecture · Design · Technology · Unified
       </motion.p>
-      <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.4, ease: [0.22, 1, 0.36, 1] }} className="brio-heading-xl text-primary-foreground max-w-4xl">
+      <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.4, ease: [0.22, 1, 0.36, 1] }} className="brio-heading-xl text-white max-w-4xl">
         Design That Shapes Lifetimes
       </motion.h1>
       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.8 }} className="brio-body text-primary-foreground/60 max-w-xl mt-6">
