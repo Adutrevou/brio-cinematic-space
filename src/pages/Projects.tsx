@@ -44,10 +44,10 @@ const Projects = () => {
       </section>
 
       {/* Grid */}
-      <section className="brio-section pt-0" ref={ref}>
-        <div className="brio-container grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="px-6 md:px-12 lg:px-24 pb-24 md:pb-32 pt-0" ref={ref}>
+        <div className="brio-container grid grid-cols-1 md:grid-cols-2 gap-0">
           {filtered.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i} inView={inView} />
+            <ProjectCard key={project.slug} project={project} index={i} />
           ))}
         </div>
       </section>
@@ -57,20 +57,21 @@ const Projects = () => {
   );
 };
 
-const ProjectCard = ({ project, index, inView }: { project: typeof projects[0]; index: number; inView: boolean }) => {
+const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
   const [hovered, setHovered] = useState(false);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      ref={ref}
+      initial={{ opacity: 0, y: 60 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: 0.1 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.2, delay: (index % 2) * 0.15, ease: [0.22, 1, 0.36, 1] }}
     >
       <Link
         to={`/projects/${project.slug}`}
-        className={`relative overflow-hidden cursor-pointer group block ${
-          project.size === "large" ? "aspect-[4/3]" : "aspect-square"
-        }`}
+        className="relative overflow-hidden cursor-pointer group block aspect-[4/3]"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -78,21 +79,38 @@ const ProjectCard = ({ project, index, inView }: { project: typeof projects[0]; 
           src={project.image}
           alt={project.title}
           className="absolute inset-0 w-full h-full object-cover"
-          animate={hovered ? { scale: 1.05 } : { scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ scale: 1.15 }}
+          animate={inView ? { scale: hovered ? 1.08 : 1 } : { scale: 1.15 }}
+          transition={{ duration: hovered ? 0.8 : 1.8, ease: [0.22, 1, 0.36, 1] }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
         <motion.div
-          className="absolute inset-0 flex flex-col justify-end p-8"
-          animate={hovered ? { backgroundColor: "rgba(0,0,0,0.3)" } : { backgroundColor: "rgba(0,0,0,0)" }}
-          transition={{ duration: 0.5 }}
+          className="absolute inset-0 flex flex-col justify-end p-8 md:p-10"
+          animate={hovered ? { backgroundColor: "rgba(0,0,0,0.25)" } : { backgroundColor: "rgba(0,0,0,0)" }}
+          transition={{ duration: 0.6 }}
         >
-          <span className="brio-caption text-white/70 mb-2">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 + (index % 2) * 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="brio-caption text-white/60 mb-2"
+          >
             {project.category} · {project.location}
-          </span>
-          <h3 className="font-serif text-2xl md:text-3xl font-light text-white">
+          </motion.span>
+          <motion.h3
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 + (index % 2) * 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif text-2xl md:text-3xl font-light text-white"
+          >
             {project.title}
-          </h3>
+          </motion.h3>
+          <motion.div
+            className="h-px bg-white/30 mt-4 origin-left"
+            initial={{ scaleX: 0 }}
+            animate={hovered ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          />
         </motion.div>
       </Link>
     </motion.div>
