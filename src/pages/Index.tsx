@@ -199,7 +199,7 @@ const FeaturedProjects = () => {
                   <motion.h3
                     animate={hoveredIndex === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ duration: 0.4, delay: 0.05 }}
-                    className="font-serif text-2xl md:text-3xl font-light text-primary-foreground"
+                    className="font-serif text-2xl md:text-3xl font-light text-white"
                   >
                     {project.title}
                   </motion.h3>
