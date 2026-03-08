@@ -3,11 +3,12 @@ import { useRef, useState } from "react";
 import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import PageHero from "@/components/brio/PageHero";
+import contactHero from "@/assets/contact-hero.jpg";
 
 const Contact = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", project: "", message: "" });
 
   return (
     <div className="grain-overlay">
@@ -15,7 +16,7 @@ const Contact = () => {
       <PageHero
         caption="Contact"
         title="Let's begin your story"
-        description="Whether you're planning a new build, renovation, or simply exploring ideas — we'd love to hear from you."
+        description="Whether you're planning a new build, a renovation, or simply exploring ideas — we'd love to hear from you."
       />
 
       <section className="brio-section pt-0" ref={ref}>
@@ -28,8 +29,8 @@ const Contact = () => {
           >
             <div className="space-y-8 mb-12">
               {[
-                { label: "Address", value: "10 Kragbron Road, Klopperpark\nJohannesburg, South Africa" },
-                { label: "Phone", value: "+27 87 265 5940" },
+                { label: "Studio", value: "10 Kragbron Road, Klopperpark\nJohannesburg, South Africa" },
+                { label: "Phone", value: "+27 (87) 265 5940" },
                 { label: "Email", value: "info@brio.co.za" },
                 { label: "Hours", value: "Monday – Friday, 08:00 – 17:00" },
               ].map((item) => (
@@ -39,7 +40,9 @@ const Contact = () => {
                 </div>
               ))}
             </div>
-            <div className="aspect-[4/3] bg-secondary" />
+            <div className="aspect-[4/3] overflow-hidden">
+              <img src={contactHero} alt="Brio-designed residence — we'd love to design yours" className="w-full h-full object-cover" />
+            </div>
           </motion.div>
 
           {/* Form */}
@@ -66,12 +69,29 @@ const Contact = () => {
               </div>
             ))}
             <div>
+              <label className="brio-caption text-muted-foreground block mb-3">Project Type</label>
+              <select
+                value={formData.project}
+                onChange={(e) => setFormData({ ...formData, project: e.target.value })}
+                className="w-full bg-transparent border-b border-border pb-3 font-sans text-base font-light text-foreground outline-none focus:border-foreground transition-colors duration-500 appearance-none"
+              >
+                <option value="">Select a service</option>
+                <option value="architecture">Architecture — New Build</option>
+                <option value="renovation">Architecture — Renovation</option>
+                <option value="interior">Interior Design</option>
+                <option value="technology">Smart Home / Technology</option>
+                <option value="cinema">Private Cinema</option>
+                <option value="other">Other / Not Sure Yet</option>
+              </select>
+            </div>
+            <div>
               <label className="brio-caption text-muted-foreground block mb-3">Tell us about your project</label>
               <textarea
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 rows={5}
                 className="w-full bg-transparent border-b border-border pb-3 font-sans text-base font-light text-foreground outline-none focus:border-foreground transition-colors duration-500 resize-none"
+                placeholder="Share your vision, timeline, or any details you'd like us to know..."
               />
             </div>
             <button
@@ -80,6 +100,9 @@ const Contact = () => {
             >
               Send Enquiry
             </button>
+            <p className="font-sans text-xs text-muted-foreground font-light mt-4">
+              We typically respond within 24 hours during business days.
+            </p>
           </motion.form>
         </div>
       </section>
