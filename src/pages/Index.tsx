@@ -184,36 +184,19 @@ const FeaturedProjects = () => {
                   animate={hoveredIndex === i ? { scale: 1.05 } : { scale: 1 }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <motion.div
                   className="absolute inset-0 flex flex-col justify-end p-8"
-                  animate={hoveredIndex === i ? { backgroundColor: "rgba(0,0,0,0.5)" } : { backgroundColor: "rgba(0,0,0,0)" }}
+                  animate={hoveredIndex === i ? { backgroundColor: "rgba(0,0,0,0.2)" } : { backgroundColor: "rgba(0,0,0,0)" }}
                   transition={{ duration: 0.5 }}
                 >
-                  <motion.span
-                    animate={hoveredIndex === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                    transition={{ duration: 0.4 }}
-                    className="brio-caption text-white/70 mb-2"
-                  >
+                  <span className="brio-caption text-white/70 mb-2">
                     {project.category}
-                  </motion.span>
-                  <motion.h3
-                    animate={hoveredIndex === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                    transition={{ duration: 0.4, delay: 0.05 }}
-                    className="font-serif text-2xl md:text-3xl font-light text-white"
-                  >
+                  </span>
+                  <h3 className="font-serif text-2xl md:text-3xl font-light text-white">
                     {project.title}
-                  </motion.h3>
+                  </h3>
                 </motion.div>
-                <svg className="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] pointer-events-none" viewBox="0 0 400 300" fill="none" preserveAspectRatio="none">
-                  <motion.rect
-                    x="0" y="0" width="400" height="300"
-                    stroke="currentColor" strokeWidth="0.5"
-                    className="text-white/30"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={hoveredIndex === i ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                  />
-                </svg>
               </Link>
             </motion.div>
           ))}
