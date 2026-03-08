@@ -33,6 +33,7 @@ const Index = () => {
     <div className="grain-overlay">
       <Navbar />
       <HeroSection />
+      <BlueprintAnimation />
       <AboutPreview />
       <FeaturedProjects />
       <ServicesPreview />
