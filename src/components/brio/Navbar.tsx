@@ -44,9 +44,7 @@ const Navbar = () => {
             <img
               src={brioLogo}
               alt="BRIO - Concepts & Design"
-              className={`h-10 w-auto transition-all duration-700 ${
-                useLightText ? "" : "invert"
-              }`}
+              className="h-10 w-auto transition-all duration-700"
             />
           </Link>
 
