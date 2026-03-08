@@ -7,7 +7,7 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         <div>
           <Link to="/" className="inline-block">
-            <img src={brioLogo} alt="BRIO - Concepts & Design" className="h-10 w-auto invert" />
+            <img src={brioLogo} alt="BRIO - Concepts & Design" className="h-10 w-auto" />
           </Link>
           <p className="font-sans text-sm text-muted-foreground mt-4 font-light">
             The Art of Living,<br />Beautifully Composed.
