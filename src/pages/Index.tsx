@@ -97,7 +97,7 @@ const AboutPreview = () => {
 
   return (
     <section className="brio-section" ref={ref}>
-      <div className="brio-container grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className="brio-container max-w-3xl">
         <div>
           <motion.p initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8 }} className="brio-caption text-muted-foreground mb-12">
             About the Studio
@@ -132,14 +132,6 @@ const AboutPreview = () => {
             </Link>
           </motion.div>
         </div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 1.2, delay: 0.6 }}
-          className="aspect-[3/4] overflow-hidden"
-        >
-          <img src={aboutStudio} alt="Brio design studio with architectural models and blueprints" className="w-full h-full object-cover" />
-        </motion.div>
       </div>
     </section>
   );
