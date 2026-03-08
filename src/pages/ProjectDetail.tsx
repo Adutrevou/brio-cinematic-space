@@ -3,21 +3,12 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import { projects } from "@/data/projects";
-import projectArchitecture from "@/assets/project-architecture.jpg";
-import projectInterior from "@/assets/project-interior.jpg";
-import projectCinema from "@/assets/project-cinema.jpg";
-import projectTiny from "@/assets/project-tiny.jpg";
-
-const imageMap: Record<string, string> = {
-  "Architecture": projectArchitecture,
-  "Interior Design": projectInterior,
-  "Smart Cinema": projectCinema,
-  "Tiny Homes": projectTiny,
-};
 
 const ProjectDetail = () => {
   const { slug } = useParams();
   const project = projects.find((p) => p.slug === slug);
+  const currentIndex = projects.findIndex((p) => p.slug === slug);
+  const nextProject = projects[(currentIndex + 1) % projects.length];
 
   if (!project) {
     return (
@@ -34,21 +25,19 @@ const ProjectDetail = () => {
     );
   }
 
-  const img = imageMap[project.category] || projectArchitecture;
-
   return (
     <div className="grain-overlay">
       <Navbar />
 
       {/* Full-screen hero */}
-      <section className="relative h-[80vh] w-full overflow-hidden">
+      <section className="relative h-[85vh] w-full overflow-hidden">
         <motion.div
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
-          <img src={img} alt={project.title} className="w-full h-full object-cover" />
+          <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         </motion.div>
         <div className="absolute inset-0 flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16">
@@ -75,10 +64,18 @@ const ProjectDetail = () => {
       <section className="brio-section">
         <div className="brio-container max-w-3xl">
           <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="brio-caption text-muted-foreground mb-8"
+          >
+            Project Overview
+          </motion.p>
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="brio-heading-md text-foreground mb-8"
+            className="brio-heading-md text-foreground mb-8 leading-relaxed"
           >
             {project.description}
           </motion.p>
@@ -91,7 +88,7 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Gallery placeholder */}
+      {/* Gallery */}
       <section className="brio-section pt-0">
         <div className="brio-container grid grid-cols-1 md:grid-cols-2 gap-4">
           {[1, 2, 3, 4].map((n) => (
@@ -101,11 +98,47 @@ const ProjectDetail = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: n * 0.1 }}
-              className="aspect-[4/3] bg-secondary"
-            />
+              className="aspect-[4/3] overflow-hidden"
+            >
+              <img
+                src={project.image}
+                alt={`${project.title} detail ${n}`}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: n === 1 ? 'center' : n === 2 ? 'left' : n === 3 ? 'right' : 'top' }}
+              />
+            </motion.div>
           ))}
         </div>
       </section>
+
+      {/* Project details */}
+      <section className="brio-section bg-secondary">
+        <div className="brio-container grid grid-cols-2 md:grid-cols-4 gap-12">
+          {[
+            { label: "Category", value: project.category },
+            { label: "Location", value: project.location },
+            { label: "Year", value: project.year },
+            { label: "Status", value: "Completed" },
+          ].map((item) => (
+            <div key={item.label}>
+              <p className="brio-caption text-muted-foreground mb-2">{item.label}</p>
+              <p className="brio-body text-foreground">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Next project */}
+      {nextProject && (
+        <section className="brio-section">
+          <div className="brio-container text-center">
+            <p className="brio-caption text-muted-foreground mb-4">Next Project</p>
+            <Link to={`/projects/${nextProject.slug}`} className="brio-heading-lg text-foreground hover:text-muted-foreground transition-colors duration-500">
+              {nextProject.title}
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Back link */}
       <section className="px-6 md:px-12 lg:px-24 pb-24">

@@ -5,17 +5,6 @@ import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import PageHero from "@/components/brio/PageHero";
 import { projects, categories } from "@/data/projects";
-import projectArchitecture from "@/assets/project-architecture.jpg";
-import projectInterior from "@/assets/project-interior.jpg";
-import projectCinema from "@/assets/project-cinema.jpg";
-import projectTiny from "@/assets/project-tiny.jpg";
-
-const imageMap: Record<string, string> = {
-  "Architecture": projectArchitecture,
-  "Interior Design": projectInterior,
-  "Smart Cinema": projectCinema,
-  "Tiny Homes": projectTiny,
-};
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -32,6 +21,7 @@ const Projects = () => {
       <PageHero
         caption="Portfolio"
         title="Selected work across architecture, interiors, cinema, and compact living"
+        description="Each project is a unique response to site, client, and brief. From desert retreats to urban residences, private cinemas to modular micro-homes."
       />
 
       {/* Filters */}
@@ -69,7 +59,6 @@ const Projects = () => {
 
 const ProjectCard = ({ project, index, inView }: { project: typeof projects[0]; index: number; inView: boolean }) => {
   const [hovered, setHovered] = useState(false);
-  const img = imageMap[project.category] || projectArchitecture;
 
   return (
     <motion.div
@@ -86,7 +75,7 @@ const ProjectCard = ({ project, index, inView }: { project: typeof projects[0]; 
         onMouseLeave={() => setHovered(false)}
       >
         <motion.img
-          src={img}
+          src={project.image}
           alt={project.title}
           className="absolute inset-0 w-full h-full object-cover"
           animate={hovered ? { scale: 1.05 } : { scale: 1 }}
@@ -94,18 +83,18 @@ const ProjectCard = ({ project, index, inView }: { project: typeof projects[0]; 
         />
         <motion.div
           className="absolute inset-0 flex flex-col justify-end p-8"
-          animate={hovered ? { backgroundColor: "hsla(220, 10%, 15%, 0.5)" } : { backgroundColor: "hsla(220, 10%, 15%, 0)" }}
+          animate={hovered ? { backgroundColor: "hsla(220, 10%, 15%, 0.5)" } : { backgroundColor: "hsla(220, 10%, 15%, 0.15)" }}
           transition={{ duration: 0.5 }}
         >
           <motion.span
-            animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0.7, y: 0 }}
             transition={{ duration: 0.4 }}
             className="brio-caption text-primary-foreground/70 mb-2"
           >
             {project.category} · {project.location}
           </motion.span>
           <motion.h3
-            animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0.9, y: 0 }}
             transition={{ duration: 0.4, delay: 0.05 }}
             className="font-serif text-2xl md:text-3xl font-light text-primary-foreground"
           >

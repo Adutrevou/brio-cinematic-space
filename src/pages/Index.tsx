@@ -5,22 +5,25 @@ import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import SmartHomeSection from "@/components/brio/SmartHomeSection";
 import heroImage from "@/assets/hero-residence.jpg";
-import projectArchitecture from "@/assets/project-architecture.jpg";
-import projectInterior from "@/assets/project-interior.jpg";
-import projectCinema from "@/assets/project-cinema.jpg";
-import projectTiny from "@/assets/project-tiny.jpg";
+import aboutStudio from "@/assets/about-studio.jpg";
+import projectNamib from "@/assets/project-namib.jpg";
+import projectIslands from "@/assets/project-islands.jpg";
+import projectEyeCinema from "@/assets/project-eye-cinema.jpg";
+import projectVictoria from "@/assets/project-victoria.jpg";
+import servicesTech from "@/assets/services-technology.jpg";
+import contactHero from "@/assets/contact-hero.jpg";
 
 const featuredProjects = [
-  { image: projectArchitecture, title: "Namib Residence", category: "Architecture", slug: "namib-residence" },
-  { image: projectInterior, title: "Islands House", category: "Interior Design", slug: "islands-house" },
-  { image: projectCinema, title: "Eye of Africa Cinema", category: "Smart Cinema", slug: "eye-of-africa-cinema" },
-  { image: projectTiny, title: "Victoria Falls Tiny Home", category: "Tiny Homes", slug: "victoria-falls-tiny-home" },
+  { image: projectNamib, title: "Namib Residence", category: "Architecture", slug: "namib-residence" },
+  { image: projectIslands, title: "Islands House", category: "Interior Design", slug: "islands-house" },
+  { image: projectEyeCinema, title: "Eye of Africa Cinema", category: "Smart Cinema", slug: "eye-of-africa-cinema" },
+  { image: projectVictoria, title: "Victoria Falls Tiny Home", category: "Tiny Homes", slug: "victoria-falls-tiny-home" },
 ];
 
 const services = [
-  { number: "01", title: "Architecture", description: "Bespoke residential and commercial architecture that responds to site, light, and the way you live.", link: "/services" },
-  { number: "02", title: "Interior Design", description: "Material-driven interiors crafted with intention. Every texture, surface, and proportion serves the experience of space.", link: "/services" },
-  { number: "03", title: "Integrated Technology", description: "Invisible technology, seamless control. Lighting, climate, audio, security — unified into architecture.", link: "/services" },
+  { number: "01", title: "Architecture", description: "From concept to completion — bespoke residential and commercial architecture that responds to site, light, and the way you live.", image: heroImage },
+  { number: "02", title: "Interior Design", description: "Material-driven interiors crafted with intention. Every texture, surface, and proportion serves the experience of space.", image: aboutStudio },
+  { number: "03", title: "Integrated Technology", description: "Invisible technology, seamless control. Lighting, climate, audio, security — unified into architecture.", image: servicesTech },
 ];
 
 const Index = () => {
@@ -32,6 +35,7 @@ const Index = () => {
       <FeaturedProjects />
       <ServicesPreview />
       <SmartHomeSection />
+      <EditorialSection />
       <CTASection />
       <Footer />
     </div>
@@ -65,14 +69,12 @@ const HeroSection = () => (
         Architecture · Design · Technology · Unified
       </motion.p>
       <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.4, ease: [0.22, 1, 0.36, 1] }} className="brio-heading-xl text-primary-foreground max-w-4xl">
-        The Art of Living,
-        <br />
-        Beautifully Composed
+        Design That Shapes Lifetimes
       </motion.h1>
       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.8 }} className="brio-body text-primary-foreground/60 max-w-xl mt-6">
-        Founded by two brothers who believe a home should tell your story. Brio unifies architecture, interior design, and smart technology into singular living experiences.
+        Brio started when two brothers combined their deep love for design with a simple belief: your home should tell your story. We design architecture, interiors, and smart home systems to create spaces that go beyond beauty — they feel personal.
       </motion.p>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.2 }} className="mt-10 flex gap-4">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.2 }} className="mt-10 flex flex-col sm:flex-row gap-4">
         <Link to="/projects" className="brio-caption text-primary-foreground/80 border border-primary-foreground/30 px-8 py-3 hover:bg-primary-foreground/10 transition-all duration-500">
           View Our Work
         </Link>
@@ -89,12 +91,6 @@ const AboutPreview = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
-  const lines = [
-    "Brio began when two brothers fused a deep love",
-    "for design with a simple belief —",
-    "your home should tell your story.",
-  ];
-
   return (
     <section className="brio-section" ref={ref}>
       <div className="brio-container grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -102,26 +98,31 @@ const AboutPreview = () => {
           <motion.p initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8 }} className="brio-caption text-muted-foreground mb-12">
             About the Studio
           </motion.p>
-          {lines.map((line, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 + i * 0.15 }}
-              className="brio-heading-lg mb-2"
-            >
-              {line}
-            </motion.p>
-          ))}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="brio-heading-lg mb-6"
+          >
+            Curating Homes, Crafting Stories.
+          </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="brio-body text-muted-foreground mt-8 max-w-lg"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="brio-body text-muted-foreground mb-6"
           >
-            We don't design spectacles. We design intention, precision, and lived experience. Architecture, interiors, and technology — considered as one.
+            We design for clients who prioritise substance over spectacle — those who recognise that true luxury comes not from extravagance, but from creating spaces with intention and thoughtfulness. We ground our work in craft, integrity, and deep respect for the context in which we build.
           </motion.p>
-          <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8, delay: 1 }} className="mt-10">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="brio-body text-muted-foreground mb-8"
+          >
+            Whether we shape an entire home or craft a singular, bespoke feature, we follow a process driven by the belief that elegance emerges not from adornment, but from restraint, precision, and a quiet boldness that stands the test of time.
+          </motion.p>
+          <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8, delay: 0.8 }}>
             <Link to="/about" className="brio-caption text-foreground border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-500">
               Read Our Story
             </Link>
@@ -131,8 +132,10 @@ const AboutPreview = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 1.2, delay: 0.6 }}
-          className="aspect-[3/4] bg-secondary"
-        />
+          className="aspect-[3/4] overflow-hidden"
+        >
+          <img src={aboutStudio} alt="Brio design studio with architectural models and blueprints" className="w-full h-full object-cover" />
+        </motion.div>
       </div>
     </section>
   );
@@ -153,7 +156,7 @@ const FeaturedProjects = () => {
           </motion.p>
           <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8, delay: 0.3 }}>
             <Link to="/projects" className="brio-caption text-foreground border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-500">
-              View All Projects
+              View All 12 Projects
             </Link>
           </motion.div>
         </div>
@@ -247,29 +250,86 @@ const ServicesPreview = () => {
               transition={{ duration: 0.8, delay: 0.3 + i * 0.2 }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
-              className="bg-background p-8 md:p-12 cursor-pointer relative overflow-hidden"
+              className="bg-background relative overflow-hidden"
             >
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 400" fill="none" preserveAspectRatio="none">
-                <motion.rect
-                  x="8" y="8" width="384" height="384"
-                  stroke="currentColor" strokeWidth="0.5"
-                  className="text-brushed-metal"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={hovered === i ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+              <div className="aspect-[16/10] overflow-hidden">
+                <motion.img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                  animate={hovered === i ? { scale: 1.05 } : { scale: 1 }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 />
-              </svg>
-              <span className="brio-caption text-brushed-metal block mb-8">{service.number}</span>
-              <h3 className="brio-heading-md mb-6">{service.title}</h3>
-              <p className="brio-body text-muted-foreground">{service.description}</p>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={hovered === i ? { scaleX: 1 } : { scaleX: 0 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="brio-divider mt-8 origin-left"
-              />
+              </div>
+              <div className="p-8 md:p-10">
+                <span className="brio-caption text-brushed-metal block mb-6">{service.number}</span>
+                <h3 className="brio-heading-md mb-4">{service.title}</h3>
+                <p className="brio-body text-muted-foreground">{service.description}</p>
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={hovered === i ? { scaleX: 1 } : { scaleX: 0 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="brio-divider mt-6 origin-left"
+                />
+              </div>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/* ─── Editorial Section ─── */
+const EditorialSection = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section className="brio-section" ref={ref}>
+      <div className="brio-container grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="aspect-[3/4] overflow-hidden"
+        >
+          <img src={contactHero} alt="Brio-designed luxury residence at golden hour" className="w-full h-full object-cover" />
+        </motion.div>
+        <div className="flex flex-col justify-center p-8 lg:p-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="brio-caption text-muted-foreground mb-8"
+          >
+            Our Belief
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="brio-heading-lg mb-6"
+          >
+            We don't just build homes — we shape the moments that matter most.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="brio-body text-muted-foreground mb-8"
+          >
+            We listen to you, understand your needs, and design homes that reflect your identity and lifestyle. We thoughtfully consider every detail — from how natural light flows to how each finish feels — to create comfort, foster connection, and build a true sense of belonging.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <Link to="/process" className="brio-caption text-foreground border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-500">
+              Explore Our Process
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -282,7 +342,7 @@ const CTASection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="brio-section" ref={ref}>
+    <section className="brio-section bg-secondary" ref={ref}>
       <div className="brio-container text-center max-w-2xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -290,7 +350,7 @@ const CTASection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="brio-heading-lg mb-6"
         >
-          Ready to begin?
+          Ready to begin your story?
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -298,7 +358,7 @@ const CTASection = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="brio-body text-muted-foreground mb-10"
         >
-          Whether it's a new build, a renovation, or a conversation about what's possible — we'd love to hear from you.
+          Whether it's a new build, a renovation, or a conversation about what's possible — we'd love to hear from you. Based in Johannesburg, designing across Southern Africa and beyond.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
