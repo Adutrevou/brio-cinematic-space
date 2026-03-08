@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import SmartHomeSection from "@/components/brio/SmartHomeSection";
+import BlueprintAnimation from "@/components/brio/BlueprintAnimation";
 import heroImage from "@/assets/hero-residence.jpg";
 import brioLogo from "@/assets/brio-logo-white.png";
 import aboutStudio from "@/assets/about-studio.jpg";
@@ -32,6 +33,7 @@ const Index = () => {
     <div className="grain-overlay">
       <Navbar />
       <HeroSection />
+      <BlueprintAnimation />
       <AboutPreview />
       <FeaturedProjects />
       <ServicesPreview />
