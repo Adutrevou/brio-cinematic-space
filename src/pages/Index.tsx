@@ -7,13 +7,12 @@ import SmartHomeSection from "@/components/brio/SmartHomeSection";
 import BlueprintAnimation from "@/components/brio/BlueprintAnimation";
 import heroImage from "@/assets/hero-residence.jpg";
 import brioLogo from "@/assets/brio-logo-white.png";
-import aboutStudio from "@/assets/about-studio.jpg";
 import projectNamib from "@/assets/project-namib.jpg";
 import projectIslands from "@/assets/project-islands.jpg";
 import projectEyeCinema from "@/assets/project-eye-cinema.jpg";
 import projectVictoria from "@/assets/project-victoria.jpg";
 import servicesTech from "@/assets/services-technology.jpg";
-import contactHero from "@/assets/contact-hero.jpg";
+import aboutStudio from "@/assets/about-studio.jpg";
 
 const featuredProjects = [
   { image: projectNamib, title: "Namib Residence", category: "Architecture", slug: "namib-residence" },
@@ -97,7 +96,7 @@ const AboutPreview = () => {
 
   return (
     <section className="brio-section" ref={ref}>
-      <div className="brio-container grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className="brio-container max-w-3xl">
         <div>
           <motion.p initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8 }} className="brio-caption text-muted-foreground mb-12">
             About the Studio
@@ -132,14 +131,6 @@ const AboutPreview = () => {
             </Link>
           </motion.div>
         </div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 1.2, delay: 0.6 }}
-          className="aspect-[3/4] overflow-hidden"
-        >
-          <img src={aboutStudio} alt="Brio design studio with architectural models and blueprints" className="w-full h-full object-cover" />
-        </motion.div>
       </div>
     </section>
   );
@@ -274,50 +265,40 @@ const EditorialSection = () => {
 
   return (
     <section className="brio-section" ref={ref}>
-      <div className="brio-container grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="aspect-[3/4] overflow-hidden"
+      <div className="brio-container max-w-3xl mx-auto text-center">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="brio-caption text-muted-foreground mb-8"
         >
-          <img src={contactHero} alt="Brio-designed luxury residence at golden hour" className="w-full h-full object-cover" />
+          Our Belief
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="brio-heading-lg mb-6"
+        >
+          We don't just build homes — we shape the moments that matter most.
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="brio-body text-muted-foreground mb-8"
+        >
+          We listen to you, understand your needs, and design homes that reflect your identity and lifestyle. We thoughtfully consider every detail — from how natural light flows to how each finish feels — to create comfort, foster connection, and build a true sense of belonging.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <Link to="/process" className="brio-caption text-foreground border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-500">
+            Explore Our Process
+          </Link>
         </motion.div>
-        <div className="flex flex-col justify-center p-8 lg:p-16">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="brio-caption text-muted-foreground mb-8"
-          >
-            Our Belief
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="brio-heading-lg mb-6"
-          >
-            We don't just build homes — we shape the moments that matter most.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="brio-body text-muted-foreground mb-8"
-          >
-            We listen to you, understand your needs, and design homes that reflect your identity and lifestyle. We thoughtfully consider every detail — from how natural light flows to how each finish feels — to create comfort, foster connection, and build a true sense of belonging.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <Link to="/process" className="brio-caption text-foreground border-b border-foreground pb-1 hover:text-muted-foreground transition-colors duration-500">
-              Explore Our Process
-            </Link>
-          </motion.div>
-        </div>
       </div>
     </section>
   );

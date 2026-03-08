@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import Navbar from "@/components/brio/Navbar";
 import Footer from "@/components/brio/Footer";
 import PageHero from "@/components/brio/PageHero";
-import contactHero from "@/assets/contact-hero.jpg";
+
 
 const Contact = () => {
   const ref = useRef(null);
@@ -39,9 +39,6 @@ const Contact = () => {
                   <p className="brio-body text-foreground whitespace-pre-line">{item.value}</p>
                 </div>
               ))}
-            </div>
-            <div className="aspect-[4/3] overflow-hidden">
-              <img src={contactHero} alt="Brio-designed residence — we'd love to design yours" className="w-full h-full object-cover" />
             </div>
           </motion.div>
 
