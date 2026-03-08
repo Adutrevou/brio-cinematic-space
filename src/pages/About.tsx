@@ -225,9 +225,6 @@ const PrincipleCard = ({ principle, index }: { principle: typeof principles[0]; 
 const ApproachSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const imageRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: imageRef, offset: ["start end", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <section className="brio-section" ref={ref}>

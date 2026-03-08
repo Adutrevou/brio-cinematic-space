@@ -11,9 +11,8 @@ import projectNamib from "@/assets/project-namib.jpg";
 import projectIslands from "@/assets/project-islands.jpg";
 import projectEyeCinema from "@/assets/project-eye-cinema.jpg";
 import projectVictoria from "@/assets/project-victoria.jpg";
-import heroImage from "@/assets/hero-residence.jpg";
-import aboutStudio from "@/assets/about-studio.jpg";
 import servicesTech from "@/assets/services-technology.jpg";
+import aboutStudio from "@/assets/about-studio.jpg";
 
 const featuredProjects = [
   { image: projectNamib, title: "Namib Residence", category: "Architecture", slug: "namib-residence" },
