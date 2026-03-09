@@ -88,17 +88,17 @@
 
   .brio-heading-xl {
     font-family: var(--font-serif);
-    @apply text-4xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight;
+    @apply text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight;
   }
 
   .brio-heading-lg {
     font-family: var(--font-serif);
-    @apply text-3xl md:text-5xl font-light tracking-tight leading-tight;
+    @apply text-2xl sm:text-3xl md:text-5xl font-light tracking-tight leading-tight;
   }
 
   .brio-heading-md {
     font-family: var(--font-serif);
-    @apply text-2xl md:text-3xl font-light tracking-tight;
+    @apply text-xl sm:text-2xl md:text-3xl font-light tracking-tight;
   }
 
   .brio-body {

@@ -33,7 +33,7 @@ const SmartHomeSection = () => {
           Technology
         </motion.p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left: Text + feature cards */}
           <div>
             <motion.h2
@@ -79,7 +79,7 @@ const SmartHomeSection = () => {
             className="flex flex-col items-center"
           >
             {/* System toggles */}
-            <div className="flex gap-4 mb-8">
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
               {(Object.keys(systemInfo) as SystemKey[]).map((key) => (
                 <button
                   key={key}

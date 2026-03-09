@@ -74,22 +74,22 @@ const HeroSection = () => (
       </svg>
     </div>
 
-    <div className="relative z-10 h-full flex flex-col items-center justify-end pb-24 md:pb-32 px-6 text-center">
-      <motion.img src={brioLogo} alt="BRIO" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.6 }} className="w-48 md:w-64 mb-8" />
-      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }} className="brio-caption text-white mb-6">
+    <div className="relative z-10 h-full flex flex-col items-center justify-end pb-16 sm:pb-24 md:pb-32 px-6 text-center">
+      <motion.img src={brioLogo} alt="BRIO" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.6 }} className="w-36 sm:w-48 md:w-64 mb-6 md:mb-8" />
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1 }} className="brio-caption text-white mb-4 md:mb-6">
         Architecture · Design · Technology · Unified
       </motion.p>
       <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.4, ease: [0.22, 1, 0.36, 1] }} className="brio-heading-xl text-white max-w-4xl">
         Design That Shapes Lifetimes
       </motion.h1>
-      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.8 }} className="brio-body text-white/80 max-w-xl mt-6">
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.8 }} className="brio-body text-white/80 max-w-xl mt-4 md:mt-6 hidden sm:block">
         Brio started when two brothers combined their deep love for design with a simple belief: your home should tell your story. We design architecture, interiors, and smart home systems to create spaces that go beyond beauty — they feel personal.
       </motion.p>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.2 }} className="mt-10 flex flex-col sm:flex-row gap-4">
-        <Link to="/projects" className="brio-caption text-background bg-foreground px-8 py-3 hover:bg-foreground/80 transition-all duration-500">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.2 }} className="mt-6 md:mt-10 flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto">
+        <Link to="/projects" className="brio-caption text-background bg-foreground px-8 py-3 hover:bg-foreground/80 transition-all duration-500 text-center">
           View Our Work
         </Link>
-        <Link to="/contact" className="brio-caption text-white border border-white/50 px-8 py-3 backdrop-blur-sm hover:bg-white/10 transition-all duration-500">
+        <Link to="/contact" className="brio-caption text-white border border-white/50 px-8 py-3 backdrop-blur-sm hover:bg-white/10 transition-all duration-500 text-center">
           Start a Conversation
         </Link>
       </motion.div>
@@ -153,7 +153,7 @@ const FeaturedProjects = () => {
   return (
     <section className="brio-section bg-secondary" ref={ref}>
       <div className="brio-container">
-        <div className="flex items-end justify-between mb-16">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-12 md:mb-16">
           <motion.p initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8 }} className="brio-caption text-muted-foreground">
             Selected Work
           </motion.p>
@@ -216,7 +216,7 @@ const ServicesPreview = () => {
   return (
     <section className="brio-section" ref={ref}>
       <div className="brio-container">
-        <div className="flex items-end justify-between mb-16">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-12 md:mb-16">
           <motion.p initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8 }} className="brio-caption text-muted-foreground">
             Services
           </motion.p>
