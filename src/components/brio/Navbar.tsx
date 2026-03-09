@@ -38,8 +38,9 @@ const Navbar = () => {
             ? "bg-background/90 backdrop-blur-md border-b border-border"
             : "bg-transparent"
         }`}
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 h-20">
+        <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 h-20" style={{ paddingLeft: "max(env(safe-area-inset-left), 0px)", paddingRight: "max(env(safe-area-inset-right), 0px)" }}>
           <Link to="/" className="flex items-center">
             <img
               src={brioLogo}
@@ -86,6 +87,7 @@ const Navbar = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-8"
+            style={{ paddingTop: "env(safe-area-inset-top)", paddingBottom: "env(safe-area-inset-bottom)" }}
           >
             {navItems.map((item, i) => (
               <motion.div
