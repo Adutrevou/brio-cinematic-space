@@ -252,29 +252,30 @@ const BlueprintAnimation = () => {
             <motion.rect x="440" y="680" width="160" height="100" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: waterFeature }} />
             <motion.rect x="1000" y="680" width="160" height="100" stroke={faint} strokeWidth="0.25" fill="none" style={{ pathLength: waterFeature }} />
 
-            {/* ── ANNOTATIONS ── */}
-            <motion.line x1="180" y1="870" x2="1420" y2="870" stroke={accent} strokeWidth="0.4" strokeDasharray="4 4" style={{ pathLength: dimH }} />
-            {[180, 540, 670, 1070, 1420].map((x, i) => (
-              <motion.line key={`t-${i}`} x1={x} y1="865" x2={x} y2="875" stroke={accent} strokeWidth="0.4" style={{ pathLength: dimTicks }} />
-            ))}
-            <motion.line x1="110" y1="200" x2="110" y2="640" stroke={accent} strokeWidth="0.4" strokeDasharray="4 4" style={{ pathLength: dimV }} />
-            {[200, 430, 640].map((y, i) => (
-              <motion.line key={`tv-${i}`} x1="105" y1={y} x2="115" y2={y} stroke={accent} strokeWidth="0.4" style={{ pathLength: dimTicks }} />
-            ))}
-
-            {/* Labels */}
-            <motion.text x="360" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
-              STONE FACADE
-            </motion.text>
-            <motion.text x="870" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
-              GLASS PAVILION
-            </motion.text>
-            <motion.text x="1245" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
-              PRIVATE WING
-            </motion.text>
-            <motion.text x="90" y="425" textAnchor="middle" className="fill-muted-foreground" fontSize="9" fontFamily="var(--font-sans)" letterSpacing="0.15em" transform="rotate(-90, 90, 425)" style={{ opacity: labelFade }}>
-              ELEVATION 4.2m
-            </motion.text>
+            {/* ── ANNOTATIONS (desktop only — too small to read on mobile) ── */}
+            <g className="hidden md:block">
+              <motion.line x1="180" y1="870" x2="1420" y2="870" stroke={accent} strokeWidth="0.4" strokeDasharray="4 4" style={{ pathLength: dimH }} />
+              {[180, 540, 670, 1070, 1420].map((x, i) => (
+                <motion.line key={`t-${i}`} x1={x} y1="865" x2={x} y2="875" stroke={accent} strokeWidth="0.4" style={{ pathLength: dimTicks }} />
+              ))}
+              <motion.line x1="110" y1="200" x2="110" y2="640" stroke={accent} strokeWidth="0.4" strokeDasharray="4 4" style={{ pathLength: dimV }} />
+              {[200, 430, 640].map((y, i) => (
+                <motion.line key={`tv-${i}`} x1="105" y1={y} x2="115" y2={y} stroke={accent} strokeWidth="0.4" style={{ pathLength: dimTicks }} />
+              ))}
+              {/* Labels */}
+              <motion.text x="360" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
+                STONE FACADE
+              </motion.text>
+              <motion.text x="870" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
+                GLASS PAVILION
+              </motion.text>
+              <motion.text x="1245" y="892" textAnchor="middle" className="fill-muted-foreground" fontSize="10" fontFamily="var(--font-sans)" letterSpacing="0.2em" style={{ opacity: labelFade }}>
+                PRIVATE WING
+              </motion.text>
+              <motion.text x="90" y="425" textAnchor="middle" className="fill-muted-foreground" fontSize="9" fontFamily="var(--font-sans)" letterSpacing="0.15em" transform="rotate(-90, 90, 425)" style={{ opacity: labelFade }}>
+                ELEVATION 4.2m
+              </motion.text>
+            </g>
 
             {/* Subtle fills */}
             <motion.rect x="180" y="230" width="360" height="410" fill="hsl(var(--foreground))" stroke="none" style={{ opacity: fillLeft }} />

@@ -33,7 +33,7 @@ const SmartHomeSection = () => {
           Technology
         </motion.p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left: Text + feature cards */}
           <div>
             <motion.h2
