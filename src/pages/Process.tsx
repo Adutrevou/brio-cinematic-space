@@ -109,7 +109,7 @@ const StageRow = ({
   return (
     <div
       ref={ref}
-      className={`relative pl-16 md:pl-28 py-16 md:py-20 ${
+      className={`relative pl-14 sm:pl-20 md:pl-28 py-12 sm:py-16 md:py-20 ${
         index < total - 1 ? "border-b border-border/50" : ""
       }`}
     >
