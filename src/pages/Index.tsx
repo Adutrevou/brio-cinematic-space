@@ -153,7 +153,7 @@ const FeaturedProjects = () => {
   return (
     <section className="brio-section bg-secondary" ref={ref}>
       <div className="brio-container">
-        <div className="flex items-end justify-between mb-16">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between mb-12 md:mb-16">
           <motion.p initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8 }} className="brio-caption text-muted-foreground">
             Selected Work
           </motion.p>

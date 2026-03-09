@@ -287,7 +287,7 @@ const QuoteSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={inView ? { opacity: 0.06, scale: 1 } : {}}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-8xl md:text-9xl text-foreground mb-4 select-none"
+          className="font-serif text-6xl sm:text-8xl md:text-9xl text-foreground mb-4 select-none"
         >
           "
         </motion.div>
@@ -295,7 +295,7 @@ const QuoteSection = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-2xl md:text-4xl font-light leading-relaxed text-foreground -mt-16 md:-mt-20"
+          className="font-serif text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed text-foreground -mt-8 sm:-mt-14 md:-mt-16 lg:-mt-20"
         >
           We don't just build homes — we shape the moments that matter most.
         </motion.blockquote>
