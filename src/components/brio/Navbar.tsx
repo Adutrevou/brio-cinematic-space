@@ -87,6 +87,7 @@ const Navbar = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-8"
+            style={{ paddingTop: "env(safe-area-inset-top)", paddingBottom: "env(safe-area-inset-bottom)" }}
           >
             {navItems.map((item, i) => (
               <motion.div
