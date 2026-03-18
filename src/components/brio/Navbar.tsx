@@ -57,7 +57,7 @@ const Navbar = () => {
                 to={item.path}
                 className={`brio-caption transition-colors duration-500 ${
                   item.label === "Projects"
-                    ? "text-black"
+                    ? "text-purple-500"
                     : location.pathname === item.path
                       ? "text-white"
                       : "text-white/60 hover:text-white"
